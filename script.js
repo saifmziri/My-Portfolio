@@ -116,28 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const cursorDot = document.getElementById("cursor-dot");
         const cursorOutline = document.getElementById("cursor-outline");
 
-        if (cursorDot && cursorOutline && window.matchMedia("(pointer: fine)").matches) {
-            window.addEventListener("mousemove", (e) => {
-                const posX = e.clientX;
-                const posY = e.clientY;
-                cursorDot.style.left = `${posX}px`;
-                cursorDot.style.top = `${posY}px`;
-
-                if (typeof gsap !== 'undefined') {
-                    gsap.to(cursorOutline, {
-                        x: posX,
-                        y: posY,
-                        duration: 0.15,
-                        ease: "power2.out",
-                        overwrite: "auto"
-                    });
-                }
-            });
-            if (typeof gsap !== 'undefined') {
-                gsap.set(cursorOutline, { xPercent: -50, yPercent: -50 });
-            }
-        }
-
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
             console.warn("GSAP not loaded");
             return;
