@@ -1,183 +1,193 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Portfolio of a Full-Stack Developer specializing in Windows Forms, WPF, and Modern Web Development.">
-    <title>SINO | Full-Stack Architect</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Portfolio of a Full-Stack Developer specializing in Windows Forms, WPF, and Modern Web Development." />
+  <title>Saif</title>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap"
-        rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap"
+    rel="stylesheet" />
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
 
-    <!-- Font Awesome (for icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Font Awesome (for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div></div>
-        <ul class="nav-links">
-            <li><a href="#hero" class="nav-link">Home</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#skills" class="nav-link">Skills</a></li>
-            <li><a href="#projects" class="nav-link">Projects</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-        <div class="hamburger">
-            <div class="line"></div>
-            <div class="line"></div>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div></div>
+    <ul class="nav-links">
+      <li><a href="#hero" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="hero-container">
+      <h2 class="hero-greeting">Welcome</h2>
+      <h1 class="hero-name">SAIF<span class="accent">.</span></h1>
+      <div class="hero-title-wrapper">
+        <span class="hero-title">FULL-STACK DEVELOPER</span>
+      </div>
+      <div class="hero-description">
+        Building robust, scalable applications with
+        <span class="highlight">Clean Code</span> principles.
+      </div>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn primary-btn">View Work</a>
+        <a href="#contact" class="btn secondary-btn">Contact Me</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <span class="scroll-text">SCROLL</span>
+    </div>
+
+    <div class="hero-overlay"></div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">01. WHO I AM</span>
+        <h2 class="section-title">Professional <br />Summary</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="lead-text">
+            I am a dedicated Full-Stack Developer with a deep focus on
+            building high-performance Windows and Web applications.
+          </p>
+          <p>
+            My expertise bridges the gap between traditional desktop
+            development and modern web technologies. I specialize in C#, .NET
+            (WPF/WinForms), and modern JavaScript/TypeScript ecosystems.
+          </p>
+          <p>
+            I don't just write code; I engineer solutions. My philosophy
+            revolves around <strong>Clean Code</strong> and maintainability.
+            Every line of code is crafted with precision and purpose.
+          </p>
+
+          <div class="stats-container"></div>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero-section">
-        <div class="hero-container">
-            <h2 class="hero-greeting">Welcome</h2>
-            <h1 class="hero-name">SAIF<span class="accent">.</span></h1>
-            <div class="hero-title-wrapper">
-                <span class="hero-title">FULL-STACK DEVELOPER</span>
-            </div>
-            <div class="hero-description">
-                Building robust, scalable applications with <span class="highlight">Clean Code</span> principles.
-            </div>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn primary-btn">View Work</a>
-                <a href="#contact" class="btn secondary-btn">Contact Me</a>
-            </div>
+        <div class="about-visual">
+          <div class="profile-img-container">
+            <!-- REPLACE: Add your image here. Ensure it's square/portrait and high quality -->
+            <img src="assets/Saif.jpg" alt="Saif - Full Stack Developer" class="profile-img" />
+            <div class="img-frame"></div>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
+  <!-- Skills Section -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-subtitle">02. MY ARSENAL</span>
+        <h2 class="section-title">Technical Expertise</h2>
+      </div>
+
+      <div class="skills-grid" id="skills-grid">
+        <!-- Dynamically Populated via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">03. SELECTED WORKS</span>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
+
+      <div class="project-list" id="project-list">
+        <!-- Dynamically Populated via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <span class="section-subtitle">05. GET IN TOUCH</span>
+          <h2 class="section-title">
+            Let's Build Something<br />Great Together.
+          </h2>
+          <p>
+            I am currently available for freelance projects and full-time
+            opportunities. If you need a robust, scalable solution, let's
+            talk.
+          </p>
+
+          <div class="contact-details">
+            <div class="detail-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span>saefmziri10@gmail.com</span>
             </div>
-            <span class="scroll-text">SCROLL</span>
+          </div>
+
+          <div class="social-links">
+            <a href="https://github.com/saifmziri" class="social-btn"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/saif-mziri-8530b037b/" class="social-btn"><i
+                class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/saif__mziri0/" class="social-btn"><i
+                class="fa-brands fa-instagram"></i></a>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="hero-overlay"></div>
-    </section>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>
+        &copy; 2026 Saif Abdulqader Adil. Built with
+        <i class="fa-solid fa-heart accent"></i> and Clean Code.
+      </p>
+      <div class="footer-social">
+        <a href="https://github.com/saifmziri"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/saif-mziri-8530b037b/"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
 
-    <!-- About Section -->
-    <section id="about" class="section about-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">01. WHO I AM</span>
-                <h2 class="section-title">Professional <br>Summary</h2>
-            </div>
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-            <div class="about-grid">
-                <div class="about-text">
-                    <p class="lead-text">
-                        I am a dedicated Full-Stack Developer with a deep focus on building high-performance Windows and
-                        Web applications.
-                    </p>
-                    <p>
-                        My expertise bridges the gap between traditional desktop development and modern web
-                        technologies. I specialize in C#, .NET (WPF/WinForms), and modern JavaScript/TypeScript
-                        ecosystems.
-                    </p>
-                    <p>
-                        I don't just write code; I engineer solutions. My philosophy revolves around <strong>Clean
-                            Code</strong> and maintainability. Every line of code is crafted with precision and purpose.
-                    </p>
-
-                    <div class="stats-container">
-
-                    </div>
-                </div>
-
-                <div class="about-visual">
-                    <div class="profile-img-container">
-                        <!-- REPLACE: Add your image here. Ensure it's square/portrait and high quality -->
-                        <img src="assets/Saif.jpg" alt="Saif - Full Stack Developer" class="profile-img">
-                        <div class="img-frame"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section skills-section">
-        <div class="container">
-            <div class="section-header center">
-                <span class="section-subtitle">02. MY ARSENAL</span>
-                <h2 class="section-title">Technical Expertise</h2>
-            </div>
-
-            <div class="skills-grid" id="skills-grid">
-                <!-- Dynamically Populated via JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section projects-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">03. SELECTED WORKS</span>
-                <h2 class="section-title">Featured Projects</h2>
-            </div>
-
-            <div class="project-list" id="project-list">
-                <!-- Dynamically Populated via JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
-        <div class="container">
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <span class="section-subtitle">05. GET IN TOUCH</span>
-                    <h2 class="section-title">Let's Build Something<br>Great Together.</h2>
-                    <p>I am currently available for freelance projects and full-time opportunities. If you need a
-                        robust, scalable solution, let's talk.</p>
-
-                    <div class="contact-details">
-                        <div class="detail-item">
-                            <i class="fa-solid fa-envelope"></i>
-                            <span>saefmziri10@gmail.com</span>
-                        </div>
-                    </div>
-
-                    <div class="social-links">
-                        <a href="https://github.com/saifmziri" class="social-btn"><i
-                                class="fa-brands fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/saif-mziri-8530b037b/" class="social-btn"><i
-                                class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://www.instagram.com/saif__mziri0/" class="social-btn"><i
-                                class="fa-brands fa-instagram"></i></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2026 SINO. Built with <i class="fa-solid fa-heart accent"></i> and Clean Code.</p>
-        </div>
-    </footer>
-
-    <!-- GSAP CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <!-- Main Script -->
-    <script src="script.js"></script>
+  <!-- Main Script -->
+  <script src="script.js"></script>
 </body>
 
 </html>
