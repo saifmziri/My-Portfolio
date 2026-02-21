@@ -269,22 +269,70 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Mobile Menu Toggle ---
+  // --- Mobile Menu Toggle & Premium Smooth Scrolling ---
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".nav-links");
-  const links = document.querySelectorAll(".nav-link");
+  const allLinks = document.querySelectorAll("a[href^='#']");
 
   if (hamburger && navLinks) {
     hamburger.addEventListener("click", () => {
       navLinks.classList.toggle("active");
       hamburger.classList.toggle("active");
     });
+  }
 
-    links.forEach((link) => {
-      link.addEventListener("click", () => {
+  // Smooth Scrolling Logic
+  allLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute("href");
+      if (targetId === "#" || !targetId) return;
+
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        const headerOffset = 90; // Adjust for fixed navbar
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        // Custom duration (in ms) - higher is smoother/slower
+        smoothScroll(offsetPosition, 1200);
+      }
+
+      // Automatically close mobile menu after clicking a link
+      if (navLinks && navLinks.classList.contains("active")) {
         navLinks.classList.remove("active");
-        hamburger.classList.remove("active");
-      });
+        if (hamburger) hamburger.classList.remove("active");
+      }
     });
+  });
+
+  // Custom Premium Smooth Scroll Function
+  function smoothScroll(targetPosition, duration) {
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+
+    // Easing function (easeOutQuart for a luxurious slow-down effect)
+    function ease(t, b, c, d) {
+      t /= d;
+      t--;
+      return -c * (t * t * t * t - 1) + b;
+    }
+
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = ease(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      } else {
+        window.scrollTo(0, targetPosition); // Snap to exact end
+      }
+    }
+
+    requestAnimationFrame(animation);
   }
 });
