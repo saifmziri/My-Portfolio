@@ -186,8 +186,67 @@ ul {
   line-height: 0.9;
   margin-bottom: 1rem;
   opacity: 0;
-  /* Animated */
+  /* Animated via GSAP */
   transform: translateY(30px);
+
+  /* Premium Auto Animation */
+  background: linear-gradient(110deg,
+      var(--text-primary) 0%,
+      var(--text-primary) 40%,
+      var(--accent-color) 50%,
+      var(--text-primary) 60%,
+      var(--text-primary) 100%);
+  background-size: 250% auto;
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Add multi-animation: Shimmer + Floating Auto Move */
+  animation: shimmerName 4s linear infinite, floatName 4s ease-in-out infinite alternate;
+  display: inline-block;
+  filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.2));
+}
+
+@keyframes floatName {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(0.5deg);
+  }
+
+  100% {
+    transform: translateY(5px) rotate(-0.5deg);
+  }
+}
+
+@keyframes shimmerName {
+  0% {
+    background-position: 200% center;
+  }
+
+  100% {
+    background-position: -50% center;
+  }
+}
+
+.hero-name .accent {
+  -webkit-text-fill-color: var(--accent-color);
+  display: inline-block;
+  animation: floatDot 3s ease-in-out infinite alternate;
+}
+
+@keyframes floatDot {
+  0% {
+    transform: translateY(0);
+    filter: drop-shadow(0 0 10px var(--accent-color));
+  }
+
+  100% {
+    transform: translateY(-8px) scale(1.1);
+    filter: drop-shadow(0 0 25px var(--text-primary));
+  }
 }
 
 .hero-title-wrapper {
@@ -918,5 +977,29 @@ ul {
   .stats-container {
     flex-direction: column;
     gap: 1.5rem;
+  }
+
+  /* Fix for Mobile Pictures - ensuring they are fully visible */
+  .profile-img-container {
+    width: 260px;
+    height: 350px;
+    margin: 0 auto;
+  }
+
+  .img-frame {
+    display: none;
+    /* Hide frame on mobile to save space and show full image focus */
+  }
+
+  .project-image {
+    height: auto;
+    min-height: 250px;
+    padding: 1rem;
+  }
+
+  .project-image img {
+    object-fit: contain !important;
+    max-height: 300px;
+    border-radius: 8px;
   }
 }
