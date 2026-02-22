@@ -744,6 +744,11 @@ ul {
   align-items: center;
 }
 
+.contact-details i,
+span {
+  padding-top: 25px;
+}
+
 .social-links {
   display: flex;
   gap: 2rem;
