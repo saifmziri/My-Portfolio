@@ -49,22 +49,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const projectsData = [
     {
-      title: "Enterprise Inventory System",
+      title: "Wandly – Premium Digital Menu System",
       description:
-        "A comprehensive Windows Forms application designed for large-scale inventory management. Features real-time tracking, barcode scanning integration, and automated reporting.",
-      tech: ["C#", "Windows Forms", "SQL Server", "Clean Code"],
-      image: "assets/menu.png", // Example using your file
-      icon: "fa-boxes-stacked", // Fallback icon
-      imageLabel: "Desktop App Layout",
+        "A sophisticated digital ecosystem built for restaurants and dessert shops. Combines a luxury brand showcase website with a fully dynamic multi-language digital menu system and secure admin dashboard. Features real-time content management, theme customization (Light/Dark), RTL/LTR internationalization, and Supabase-powered backend integration.",
+      tech: ["HTML5", "CSS3", "JavaScript (ES6+)", "Supabase", "Responsive Design"],
+      image: "assets/menu.png",
+      icon: "fa-utensils",
+      imageLabel: "Digital Menu & Admin Dashboard",
     },
     {
-      title: "Modern E-Commerce Platform",
+      title: "ClinicDentail Management System",
       description:
-        "A full-stack web application with a responsive dashboard, showcasing the power of vanilla JavaScript and clean CSS architecture without relying on heavy frameworks.",
-      tech: ["HTML5/CSS3", "Vanilla JS", "REST API", "C# Backend"],
-      image: "assets/dentail.png", // Set to "assets/filename.jpg"
-      icon: "fa-cart-shopping",
-      imageLabel: "Web Dashboard UI",
+        "A comprehensive Clinical Dental Management System designed to streamline operations, enhance patient care, and provide advanced financial tracking. Built with ASP.NET Core Web API and a modern Vanilla JavaScript frontend, featuring appointment scheduling, treatment management, PDF reporting, and a secure role-based admin dashboard.",
+      tech: [
+        "ASP.NET Core Web API",
+        "C#",
+        "SQL Server",
+        "HTML5/CSS3",
+        "Vanilla JS (ES Modules)",
+        "RESTful API"
+      ],
+      image: "assets/dentail.png",
+      icon: "fa-tooth",
+      imageLabel: "Clinic Dashboard & Reporting System",
     },
   ];
 
