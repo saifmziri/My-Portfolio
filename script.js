@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       x: -50,
       opacity: 0,
-      duration: 1,
+      duration: 2,
       ease: "power2.out",
     });
 
@@ -192,8 +192,8 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       scale: 0.9,
       opacity: 0,
-      duration: 1,
-      delay: 0.2,
+      duration: 2,
+      delay: 0.4,
       ease: "back.out(1.7)",
     });
 
@@ -271,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       x: -50,
       opacity: 0,
-      duration: 1,
+      duration: 3,
       ease: "power2.out",
     });
   }
