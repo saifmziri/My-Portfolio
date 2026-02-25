@@ -314,6 +314,144 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // --- Professional Dynamic Particle Background ---
+  function initParticles() {
+    const canvas = document.getElementById("bg-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    let width, height, particles;
+
+    // Mouse interaction properties
+    let mouse = {
+      x: null,
+      y: null,
+      radius: 120
+    };
+
+    window.addEventListener('mousemove', function (event) {
+      mouse.x = event.clientX;
+      mouse.y = event.clientY;
+    });
+
+    window.addEventListener('mouseout', function () {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      init();
+    }
+
+    class Particle {
+      constructor(x, y, dx, dy, size, color) {
+        this.x = x;
+        this.y = y;
+        this.dx = dx;
+        this.dy = dy;
+        this.size = size;
+        this.color = color;
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.density = (Math.random() * 20) + 1;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+
+      update() {
+        // Check bounds to bounce
+        if (this.x > width || this.x < 0) this.dx = -this.dx;
+        if (this.y > height || this.y < 0) this.dy = -this.dy;
+
+        // Move particle
+        this.x += this.dx;
+        this.y += this.dy;
+
+        // Mouse interaction: push away slightly for a cool interactive feel
+        if (mouse.x != null && mouse.y != null) {
+          let dx = mouse.x - this.x;
+          let dy = mouse.y - this.y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < mouse.radius) {
+            const forceDirectionX = dx / distance;
+            const forceDirectionY = dy / distance;
+            const maxDistance = mouse.radius;
+            const force = (maxDistance - distance) / maxDistance;
+            const directionX = forceDirectionX * force * this.density;
+            const directionY = forceDirectionY * force * this.density;
+            this.x -= directionX;
+            this.y -= directionY;
+          }
+        }
+        this.draw();
+      }
+    }
+
+    function init() {
+      particles = [];
+      // Calculate a balanced number of particles based on screen size
+      let numberOfParticles = Math.floor((width * height) / 10000);
+      // limit on huge screens
+      if (numberOfParticles > 200) numberOfParticles = 200;
+
+      for (let i = 0; i < numberOfParticles; i++) {
+        let size = (Math.random() * 2) + 0.5;
+        let x = Math.random() * width;
+        let y = Math.random() * height;
+        let dx = (Math.random() - 0.5) * 0.8;
+        let dy = (Math.random() - 0.5) * 0.8;
+        let color = 'rgba(56, 189, 248, 0.6)'; // Accent sky blue
+        particles.push(new Particle(x, y, dx, dy, size, color));
+      }
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+      }
+      connect();
+    }
+
+    function connect() {
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a; b < particles.length; b++) {
+          let dx = particles[a].x - particles[b].x;
+          let dy = particles[a].y - particles[b].y;
+          let distance = dx * dx + dy * dy;
+
+          // If particles are close enough, draw a line between them
+          if (distance < 15000) {
+            let opacity = 1 - (distance / 15000);
+            ctx.strokeStyle = `rgba(56, 189, 248, ${opacity * 0.4})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    animate();
+  }
+
+  initParticles();
+
   // Custom Premium Smooth Scroll Function
   function smoothScroll(targetPosition, duration) {
     const startPosition = window.pageYOffset;
