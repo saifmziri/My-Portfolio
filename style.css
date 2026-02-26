@@ -179,7 +179,7 @@ ul {
 }
 
 .hero-greeting {
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(2rem, 5vw, 4.5rem);
   color: var(--accent-color);
   margin-bottom: 1rem;
   text-transform: uppercase;
