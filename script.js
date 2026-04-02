@@ -31,19 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       category: "Frontend Development",
       icon: "fa-code",
-      items: [
-        "HTML5",
-        "CSS3 (Flexbox & Grid)",
-        "JavaScript (ES6+)",
-        "TypeScript",
-        "Responsive Web Design",
-        "GSAP Animations",
-      ],
-    },
-    {
-      category: "Tools & Workflow",
-      icon: "fa-screwdriver-wrench",
-      items: ["Visual Studio", "Git & GitHub", "Chrome DevTools"],
+      items: ["HTML", "CSS", "JavaScript", "TypeScript"],
     },
   ];
 
@@ -52,7 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
       title: "Wandly – Premium Digital Menu System",
       description:
         "A sophisticated digital ecosystem built for restaurants and dessert shops. Combines a luxury brand showcase website with a fully dynamic multi-language digital menu system and secure admin dashboard. Features real-time content management, theme customization (Light/Dark), RTL/LTR internationalization, and Supabase-powered backend integration.",
-      tech: ["HTML5", "CSS3", "JavaScript (ES6+)", "Supabase", "Responsive Design"],
+      tech: [
+        "HTML5",
+        "CSS3",
+        "JavaScript (ES6+)",
+        "Supabase",
+        "Responsive Design",
+      ],
       image: "assets/menu.png",
       icon: "fa-utensils",
       imageLabel: "Digital Menu & Admin Dashboard",
@@ -67,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "SQL Server",
         "HTML5/CSS3",
         "Vanilla JS (ES Modules)",
-        "RESTful API"
+        "RESTful API",
       ],
       image: "assets/dentail.png",
       icon: "fa-tooth",
@@ -300,7 +294,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (targetElement) {
         const headerOffset = 90; // Adjust for fixed navbar
         const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
 
         // Custom duration (in ms) - higher is smoother/slower
         smoothScroll(offsetPosition, 1200);
@@ -326,15 +321,15 @@ document.addEventListener("DOMContentLoaded", () => {
     let mouse = {
       x: null,
       y: null,
-      radius: 120
+      radius: 120,
     };
 
-    window.addEventListener('mousemove', function (event) {
+    window.addEventListener("mousemove", function (event) {
       mouse.x = event.clientX;
       mouse.y = event.clientY;
     });
 
-    window.addEventListener('mouseout', function () {
+    window.addEventListener("mouseout", function () {
       mouse.x = null;
       mouse.y = null;
     });
@@ -357,7 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
         this.color = color;
         this.baseX = this.x;
         this.baseY = this.y;
-        this.density = (Math.random() * 20) + 1;
+        this.density = Math.random() * 20 + 1;
       }
 
       draw() {
@@ -404,12 +399,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (numberOfParticles > 200) numberOfParticles = 200;
 
       for (let i = 0; i < numberOfParticles; i++) {
-        let size = (Math.random() * 2) + 0.5;
+        let size = Math.random() * 2 + 0.5;
         let x = Math.random() * width;
         let y = Math.random() * height;
         let dx = (Math.random() - 0.5) * 0.8;
         let dy = (Math.random() - 0.5) * 0.8;
-        let color = 'rgba(56, 189, 248, 0.6)'; // Accent sky blue
+        let color = "rgba(56, 189, 248, 0.6)"; // Accent sky blue
         particles.push(new Particle(x, y, dx, dy, size, color));
       }
     }
@@ -433,7 +428,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           // If particles are close enough, draw a line between them
           if (distance < 15000) {
-            let opacity = 1 - (distance / 15000);
+            let opacity = 1 - distance / 15000;
             ctx.strokeStyle = `rgba(56, 189, 248, ${opacity * 0.4})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
@@ -445,7 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    window.addEventListener('resize', resize);
+    window.addEventListener("resize", resize);
     resize();
     animate();
   }

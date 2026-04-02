@@ -67,8 +67,16 @@ body::before {
   height: 100%;
   z-index: -1;
   background:
-    radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.04), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.04), transparent 25%);
+    radial-gradient(
+      circle at 15% 50%,
+      rgba(56, 189, 248, 0.04),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(139, 92, 246, 0.04),
+      transparent 25%
+    );
   animation: bgFloat 15s infinite alternate ease-in-out;
 }
 
@@ -200,19 +208,23 @@ ul {
   transform: translateY(30px);
 
   /* Premium Auto Animation */
-  background: linear-gradient(110deg,
-      var(--text-primary) 0%,
-      var(--text-primary) 40%,
-      var(--accent-color) 50%,
-      var(--text-primary) 60%,
-      var(--text-primary) 100%);
+  background: linear-gradient(
+    110deg,
+    var(--text-primary) 0%,
+    var(--text-primary) 40%,
+    var(--accent-color) 50%,
+    var(--text-primary) 60%,
+    var(--text-primary) 100%
+  );
   background-size: 250% auto;
   color: #fff;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   /* Add multi-animation: Shimmer + Floating Auto Move */
-  animation: shimmerName 4s linear infinite, floatName 4s ease-in-out infinite alternate;
+  animation:
+    shimmerName 4s linear infinite,
+    floatName 4s ease-in-out infinite alternate;
   display: inline-block;
   filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.2));
 }
@@ -325,11 +337,13 @@ ul {
   background: transparent;
   color: var(--accent-color);
   border: 1px solid var(--accent-color);
-  box-shadow: 0 0 15px var(--accent-glow), inset 0 0 10px var(--accent-glow);
+  box-shadow:
+    0 0 15px var(--accent-glow),
+    inset 0 0 10px var(--accent-glow);
 }
 
 .primary-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -840,13 +854,15 @@ span {
 
 /* Instagram */
 .social-btn:nth-child(3)::before {
-  background: linear-gradient(45deg,
-      #405de6,
-      #5851db,
-      #833ab4,
-      #c13584,
-      #e1306c,
-      #fd1d1d);
+  background: linear-gradient(
+    45deg,
+    #405de6,
+    #5851db,
+    #833ab4,
+    #c13584,
+    #e1306c,
+    #fd1d1d
+  );
 }
 
 .social-btn:nth-child(3):hover {
@@ -865,7 +881,6 @@ span {
 
 /* Responsive */
 @media (max-width: 900px) {
-
   .about-grid,
   .project-item,
   .contact-wrapper {
