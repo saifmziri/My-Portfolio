@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "RESTful API Development",
         "JWT Authentication & Authorization",
         "ADO.NET",
+        "Entity Framework",
       ],
     },
     {
