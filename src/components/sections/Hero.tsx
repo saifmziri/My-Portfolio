@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Mail, Sparkles } from 'lucide-react';
+import { Mail, Sparkles } from 'lucide-react';
 import { personalInfo, developerPhotoPlaceholder } from '../../data/portfolioData';
 import { MagneticButton } from '../animations/MagneticButton';
 import { GithubIcon, LinkedinIcon } from '../ui/Icons';
@@ -8,7 +8,7 @@ import { useGsapContext } from '../../hooks/useGsapContext';
 import gsap from 'gsap';
 
 // ─── Developer Photo Composition ─────────────────────────────────────────────
-// Displays the professional developer portrait with clean, authentic framing.
+// Displays the professional developer portrait with a 3D orbital ring effect.
 
 const DeveloperPhotoComposition: React.FC = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -51,10 +51,82 @@ const DeveloperPhotoComposition: React.FC = () => {
       aria-hidden="true"
     >
       {/* Ambient background glow */}
-      <div className="absolute inset-0 bg-indigo-600/8 rounded-3xl blur-[80px] pointer-events-none" />
+      <div className="absolute inset-0 bg-indigo-600/10 rounded-3xl blur-[90px] pointer-events-none" />
 
       {/* Floating photo wrapper */}
       <div ref={photoRef} className="relative w-full max-w-[340px] lg:max-w-[380px] mx-auto">
+
+        {/* ─── 3D ORBITAL RING EFFECT (BEHIND LAYER - z-0) ────────────────── */}
+        <div className="absolute -inset-10 sm:-inset-16 pointer-events-none z-0 overflow-visible flex items-center justify-center">
+          <svg
+            viewBox="0 0 500 600"
+            className="w-[125%] h-[125%] overflow-visible"
+            fill="none"
+          >
+            <defs>
+              <linearGradient id="orbit-grad-back" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#6366f1" stopOpacity="0.3" />
+                <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#a855f7" stopOpacity="0.3" />
+              </linearGradient>
+              <filter id="glow-back" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="2.5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <g transform="translate(250, 310) rotate(-16)">
+              {/* Back Arc: passes behind upper torso/shoulders */}
+              <path
+                d="M -225 0 A 225 68 0 0 0 225 0"
+                stroke="url(#orbit-grad-back)"
+                strokeWidth="1.25"
+                strokeDasharray="6 4"
+                className="opacity-75"
+                filter="url(#glow-back)"
+              />
+              {/* Solid thin core line behind */}
+              <path
+                d="M -225 0 A 225 68 0 0 0 225 0"
+                stroke="#818cf8"
+                strokeWidth="0.75"
+                strokeOpacity="0.45"
+              />
+              {/* Particle 1 - Back phase */}
+              <circle r="3" fill="#38bdf8" filter="url(#glow-back)">
+                <animate
+                  attributeName="opacity"
+                  values="1;1;0;0;1"
+                  keyTimes="0;0.49;0.5;0.99;1"
+                  dur="14s"
+                  repeatCount="indefinite"
+                />
+                <animateMotion
+                  path="M -225 0 A 225 68 0 0 0 225 0"
+                  dur="7s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              {/* Particle 2 - Back phase (offset by 180 deg) */}
+              <circle r="2.5" fill="#c084fc" filter="url(#glow-back)">
+                <animate
+                  attributeName="opacity"
+                  values="0;0;1;1;0"
+                  keyTimes="0;0.5;0.51;0.99;1"
+                  dur="14s"
+                  repeatCount="indefinite"
+                />
+                <animateMotion
+                  path="M -225 0 A 225 68 0 0 0 225 0"
+                  dur="7s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
+          </svg>
+        </div>
 
         {/* Outer corner brackets — subtle technical framing */}
         <div className="absolute -top-4 -left-4 w-9 h-9 border-t-[1.5px] border-l-[1.5px] border-indigo-400/60 rounded-tl-xl z-20" />
@@ -65,9 +137,8 @@ const DeveloperPhotoComposition: React.FC = () => {
         {/* Subtle accent line */}
         <div className="absolute top-1/3 -left-8 right-0 h-px bg-gradient-to-r from-indigo-500/40 via-transparent to-transparent z-20 pointer-events-none" />
 
-        {/* Main photo container */}
-        <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/70 aspect-[3/4]">
-
+        {/* Main photo container (z-10) */}
+        <div className="relative z-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/70 aspect-[3/4]">
           {/* Developer Photo with fallback */}
           <img
             src={personalInfo.profileImage}
@@ -97,8 +168,79 @@ const DeveloperPhotoComposition: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/30 via-transparent to-zinc-950/20 pointer-events-none" />
         </div>
 
+        {/* ─── 3D ORBITAL RING EFFECT (FRONT LAYER - z-30) ────────────────── */}
+        <div className="absolute -inset-10 sm:-inset-16 pointer-events-none z-30 overflow-visible flex items-center justify-center">
+          <svg
+            viewBox="0 0 500 600"
+            className="w-[125%] h-[125%] overflow-visible"
+            fill="none"
+          >
+            <defs>
+              <linearGradient id="orbit-grad-front" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#a855f7" stopOpacity="0.4" />
+                <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.95" />
+                <stop offset="100%" stopColor="#818cf8" stopOpacity="0.6" />
+              </linearGradient>
+              <filter id="glow-front" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <g transform="translate(250, 310) rotate(-16)">
+              {/* Front Arc: passes in front of mid/lower torso */}
+              <path
+                d="M 225 0 A 225 68 0 0 0 -225 0"
+                stroke="url(#orbit-grad-front)"
+                strokeWidth="1.5"
+                strokeDasharray="8 5"
+                filter="url(#glow-front)"
+              />
+              {/* Solid crisp core line in front */}
+              <path
+                d="M 225 0 A 225 68 0 0 0 -225 0"
+                stroke="#38bdf8"
+                strokeWidth="1"
+                strokeOpacity="0.8"
+              />
+              {/* Particle 1 - Front phase */}
+              <circle r="3.5" fill="#38bdf8" filter="url(#glow-front)">
+                <animate
+                  attributeName="opacity"
+                  values="0;0;1;1;0"
+                  keyTimes="0;0.5;0.51;0.99;1"
+                  dur="14s"
+                  repeatCount="indefinite"
+                />
+                <animateMotion
+                  path="M 225 0 A 225 68 0 0 0 -225 0"
+                  dur="7s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              {/* Particle 2 - Front phase (offset by 180 deg) */}
+              <circle r="3" fill="#c084fc" filter="url(#glow-front)">
+                <animate
+                  attributeName="opacity"
+                  values="1;1;0;0;1"
+                  keyTimes="0;0.49;0.5;0.99;1"
+                  dur="14s"
+                  repeatCount="indefinite"
+                />
+                <animateMotion
+                  path="M 225 0 A 225 68 0 0 0 -225 0"
+                  dur="7s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
+          </svg>
+        </div>
+
         {/* Vertical location coordinates detail — right side */}
-        <div className="absolute -right-10 top-1/4 bottom-1/4 hidden xl:flex flex-col items-center gap-0">
+        <div className="absolute -right-10 top-1/4 bottom-1/4 hidden xl:flex flex-col items-center gap-0 z-20">
           <div className="w-px flex-grow bg-gradient-to-b from-transparent via-indigo-500/40 to-transparent" />
           <span
             className="text-[9px] font-mono text-zinc-600 tracking-[0.2em] my-2"
@@ -248,21 +390,6 @@ export const Hero: React.FC = () => {
         <div className="order-1 lg:order-2 flex justify-center">
           <DeveloperPhotoComposition />
         </div>
-      </div>
-
-      {/* Scroll Prompt */}
-      <div className="flex justify-between items-center pt-8 text-xs font-mono text-zinc-500">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>SCROLL TO EXPLORE</span>
-        </div>
-        <a
-          href="#about"
-          className="p-2 rounded-full border border-white/10 hover:text-white transition-colors"
-          aria-label="Scroll down to About section"
-        >
-          <ArrowDown className="w-4 h-4 animate-bounce" />
-        </a>
       </div>
     </section>
   );
