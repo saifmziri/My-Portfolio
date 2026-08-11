@@ -1,4 +1,4 @@
-import type { PersonalInfo, Principle } from '../types/portfolio';
+import type { PersonalInfo } from '../types/portfolio';
 
 // Sleek placeholder graphic for developer photo until replaced by user
 export const developerPhotoPlaceholder = `data:image/svg+xml;utf8,${encodeURIComponent(`
@@ -35,14 +35,13 @@ export const developerPhotoPlaceholder = `data:image/svg+xml;utf8,${encodeURICom
 `)}`;
 
 export const personalInfo: PersonalInfo = {
-  name: "Saif Abdulqadir Adil",
+  name: "Saif Abdulqadir",
   title: "Full-Stack Developer",
   roleTagline: "Building scalable web, backend, database, and desktop applications with clean architecture.",
-  bio: "Computer Science student & Full-Stack Developer passionate about building high-performance web, backend, and desktop applications using C#, .NET, React, Laravel, and SQL databases.",
+  bio: "Computer Science student & Full-Stack Developer passionate about building high-performance web, backend, and desktop applications.",
   extendedBio: [
-    "I am a Computer Science student at the University of Duhok and a Full-Stack Developer focused on software engineering. I work across frontend, backend, databases, and desktop development with an emphasis on Clean Code and solid software architecture.",
-    "My core technology stack includes C#, .NET Core, ASP.NET Web API, Entity Framework Core, Laravel, React, TypeScript, SQL Server, and PostgreSQL. Whether architecting RESTful services with JWT authentication or developing desktop software with WPF and WinForms, I focus on reliability and data integrity.",
-    "Through hands-on application engineering and comprehensive roadmap certifications, I continuously build production-ready platforms — including project management tools, clinic systems, multi-lingual web platforms, and financial software."
+    "I am a Computer Science student and Full-Stack Developer focused on building web applications, backend systems, APIs, database-driven applications, and desktop applications.",
+    "I care about writing clean, maintainable software and building systems with clear structure and separation of responsibilities."
   ],
   location: "Duhok",
   email: "saefmziri10@gmail.com",
@@ -50,41 +49,47 @@ export const personalInfo: PersonalInfo = {
   github: "https://github.com/saifmziri",
   linkedin: "https://linkedin.com/in/saif-mziri-8530b037b",
   resumeUrl: "#",
-
-  // Photo path — place photo file in public/profile.jpg
   profileImage: "/profile.jpg",
-
-  stats: [
-    {
-      label: "PROJECTS",
-      value: "10+",
-      description: "Full-stack, backend, & desktop applications"
-    },
-    {
-      label: "CERTIFICATIONS",
-      value: "30+",
-      description: "Software engineering & developer roadmap"
-    }
-  ]
+  stats: []
 };
 
-export const engineeringPrinciples: Principle[] = [
+export const aboutStats = [
   {
-    title: "Clean Architecture & 3-Tier",
-    subtitle: "Maintainable Systems",
-    description: "Decoupling presentation, business logic, and database persistence layers using SOLID principles, dependency injection, and service contracts.",
-    codeSnippet: "public class TaskService : ITaskService { private readonly ITaskRepository _repo; }"
+    target: 10,
+    suffix: "+",
+    label: "PROJECTS"
   },
   {
-    title: "RESTful APIs & Security",
-    subtitle: "Robust Endpoint Services",
-    description: "Designing RESTful API endpoints in ASP.NET Core & Laravel with JWT/Sanctum authentication, role-based authorization, and centralized error handling.",
-    codeSnippet: "[Authorize(Roles = \"Admin\")]\n[HttpPost]\npublic async Task<IActionResult> CreateTask([FromBody] TaskDto dto) => Ok(await _service.CreateAsync(dto));"
+    target: 30,
+    suffix: "+",
+    label: "CERTIFICATIONS"
   },
   {
-    title: "Database Integrity",
-    subtitle: "SQL Server & PostgreSQL",
-    description: "Architecting relational database schemas, T-SQL stored procedures, ADO.NET/EF Core data mapping, and ACID-compliant transactional operations.",
-    codeSnippet: "CREATE PROCEDURE dbo.sp_GetPatientSummary @PatientId INT AS BEGIN SELECT * FROM Patients WHERE Id = @PatientId END;"
+    target: 2,
+    suffix: "+",
+    label: "YEARS CODING"
+  }
+];
+
+export const engineeringPrinciples = [
+  {
+    number: "01",
+    title: "Clean Architecture",
+    description: "Maintainable system structure and separation of responsibilities."
+  },
+  {
+    number: "02",
+    title: "SOLID Principles",
+    description: "Flexible and maintainable object-oriented design."
+  },
+  {
+    number: "03",
+    title: "Clean Code",
+    description: "Readable, understandable, and maintainable code."
+  },
+  {
+    number: "04",
+    title: "3-Tier Architecture",
+    description: "Separation of presentation, business logic, and data access."
   }
 ];

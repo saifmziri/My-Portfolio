@@ -370,20 +370,6 @@ export const Hero: React.FC = () => {
               </a>
             </div>
           </motion.div>
-
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 gap-6 pt-6 border-t border-white/10">
-            {personalInfo.stats.map((stat, idx) => (
-              <div key={idx} className="space-y-1">
-                <div className="text-2xl sm:text-3xl font-bold font-mono text-white tracking-tight">
-                  {stat.value}
-                </div>
-                <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Right Column: Developer Photo Composition */}
