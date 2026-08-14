@@ -31,9 +31,14 @@ export interface Project {
   featured: boolean;
   technologies: string[];
   image: string;
+  images?: string[];
   previewVideo?: string;
   github?: string;
+  githubFrontend?: string;
+  githubBackend?: string;
   live?: string;
+  linkedinPost?: string;
+  instagramPost?: string;
   metrics: {
     label: string;
     value: string;

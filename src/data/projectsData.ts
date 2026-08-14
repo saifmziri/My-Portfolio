@@ -53,8 +53,10 @@ export const projects: Project[] = [
     category: "Full-Stack Web",
     featured: true,
     technologies: ["Laravel", "React", "TypeScript", "Tailwind CSS", "Laravel Sanctum", "REST API"],
-    image: generateProjectMockup("TaskFlow System", "#6366F1", "p1"),
-    github: "https://github.com/saifmziri",
+    image: "/projects/taskflow.png",
+    githubFrontend: "https://github.com/saifmziri/Task-Project-Management-System-Frontend",
+    githubBackend: "https://github.com/saifmziri/Task-Project-Management-System-API",
+    linkedinPost: "https://www.linkedin.com/posts/saefmziri_laravel-reactjs-tailwindcss-ugcPost-7491581009075957760-C7Iy",
     metrics: [
       { label: "Status", value: "In Development" },
       { label: "Role", value: "Full-Stack Dev" },
@@ -83,8 +85,8 @@ export const projects: Project[] = [
     category: "Full-Stack Web",
     featured: true,
     technologies: [".NET", "C#", "RESTful API", "SQL Server", "ADO.NET", "T-SQL", "JavaScript"],
-    image: generateProjectMockup("Dental Clinic System", "#00F0FF", "p2"),
-    github: "https://github.com/saifmziri",
+    image: "/projects/dental-clinic.png",
+    linkedinPost: "https://www.linkedin.com/posts/saefmziri_dotnet-csharp-adonet-ugcPost-7494078186289451008-cQZF",
     metrics: [
       { label: "Status", value: "Production-Ready" },
       { label: "Role", value: "Full-Stack Dev" },
@@ -113,8 +115,7 @@ export const projects: Project[] = [
     category: "Desktop Application",
     featured: true,
     technologies: ["WPF", "C#", "SQL Server", "ADO.NET", "T-SQL", "RESTful API"],
-    image: generateProjectMockup("Institute System", "#10B981", "p3"),
-    github: "https://github.com/saifmziri",
+    image: "/projects/IMS.png",
     metrics: [
       { label: "Status", value: "Production-Ready" },
       { label: "Role", value: "Backend & DB Dev" },
@@ -143,8 +144,8 @@ export const projects: Project[] = [
     category: "Full-Stack Web",
     featured: true,
     technologies: ["React", "JavaScript", "Supabase", "PostgreSQL", "Tailwind CSS", "HTML/CSS"],
-    image: generateProjectMockup("Online Menu Platform", "#F59E0B", "p4"),
-    github: "https://github.com/saifmziri",
+    image: "/projects/Menu.png",
+    live: "https://wandly-menu.pages.dev/menu/#",
     metrics: [
       { label: "Status", value: "Production-Ready" },
       { label: "Role", value: "Full-Stack Dev" },
@@ -173,9 +174,16 @@ export const projects: Project[] = [
     category: "Full-Stack Web",
     featured: false,
     technologies: ["C#", "ASP.NET Core", "Entity Framework Core", "SQL Server", "TypeScript", "Vite", "React"],
-    image: generateProjectMockup("Gym Management System", "#8B5CF6", "p5"),
-    github: "https://github.com/saifmziri",
-    metrics: [
+     image: "/projects/gym1.png",
+      images: [
+    "/projects/gym1.png",
+    "/projects/gym2.png",
+    "/projects/gym3.png",
+    "/projects/gym4.png",
+    "/projects/gym5.png",
+    "/projects/gym6.png"
+  ],
+     metrics: [ 
       { label: "Status", value: "In Development" },
       { label: "Role", value: "Full-Stack Dev" },
       { label: "Backend", value: "ASP.NET & EF Core" }
@@ -204,7 +212,7 @@ export const projects: Project[] = [
     featured: false,
     technologies: ["C#", "WinForms", "SQL Server", "T-SQL", "3-Tier Architecture"],
     image: generateProjectMockup("DVLD Licensing System", "#EC4899", "p6"),
-    github: "https://github.com/saifmziri",
+    instagramPost: "https://www.instagram.com/p/DM6K8uxIpr0RCboZa-sGb8dUPVMoeDCxJZwg780/",
     metrics: [
       { label: "Status", value: "Academic Project" },
       { label: "Role", value: ".NET Developer" },
@@ -234,7 +242,7 @@ export const projects: Project[] = [
     featured: false,
     technologies: ["C#", "WinForms", "SQL Server", "T-SQL", "RBAC"],
     image: generateProjectMockup("Bank Management System", "#14B8A6", "p7"),
-    github: "https://github.com/saifmziri",
+    linkedinPost:"https://www.linkedin.com/posts/saefmziri_csharp-tsql-sqlserver-activity-7369091075967176705-3gNm?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF3O778BJOwLKpBGDVCGXz5RXhXo5AvDIig",
     metrics: [
       { label: "Status", value: "Academic Project" },
       { label: "Role", value: ".NET Developer" },
