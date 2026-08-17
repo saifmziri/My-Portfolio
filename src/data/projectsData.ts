@@ -259,5 +259,94 @@ export const projects: Project[] = [
       "Clean C# desktop business logic layer",
       "T-SQL data access scripts executing within transaction blocks"
     ]
-  }
+  },
+  {
+  id: "weather-app",
+  number: "08",
+  title: "Weather Application",
+  subtitle: "Real-Time Weather Data & Advanced State Management",
+  tagline: "Modern React weather application powered by OpenWeatherMap API and RTK Query.",
+  description: "A responsive weather application that provides real-time weather information for any city, with advanced API data fetching, caching, error handling, and multi-language support.",
+  extendedDescription: "A modern weather application built with React that connects to the OpenWeatherMap API to retrieve real-time weather conditions. The project uses Redux Toolkit and RTK Query for efficient server-state management, intelligent caching, loading and error handling, while i18n provides a multi-language user experience.",
+  category: "Web Application",
+  featured: false,
+  technologies: [
+    "React",
+    "Redux Toolkit",
+    "RTK Query",
+    "Tailwind CSS",
+    "i18n",
+    "OpenWeatherMap API"
+  ],
+  image: "/projects/weather.png",
+  live: "https://project-weatherr.netlify.app/",
+  githubFrontend: "https://github.com/saifmziri/Weather",
+  linkedinPost: "https://www.linkedin.com/posts/saefmziri_reactjs-reduxtoolkit-rtkquery-activity-7484343491112787968-o3pK?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF3O778BJOwLKpBGDVCGXz5RXhXo5AvDIig",
+  metrics: [
+    { label: "Status", value: "Academic Project" },
+    { label: "Role", value: "React Developer" },
+    { label: "Data", value: "Real-Time API" }
+  ],
+  features: [
+    "Real-time weather data for any searched city",
+    "Weather information including temperature, humidity, wind speed, and conditions",
+    "RTK Query for efficient API data fetching, caching, and request state management",
+    "Multi-language support using i18n",
+    "Responsive and modern user interface built with Tailwind CSS",
+    "Loading and error states for reliable API interaction"
+  ],
+  architectureHighlights: [
+    "RTK Query weatherApiSlice for centralized API communication and caching",
+    "Redux Toolkit for predictable application and server-state management",
+    "OpenWeatherMap API integration for live weather data",
+    "Component-based React architecture with responsive Tailwind CSS styling"
+  ]
+},
+{
+  id: "todo-list",
+  number: "09",
+  title: "To-Do List Application",
+  subtitle: "Advanced State Management & Persistent Task Management",
+  tagline: "Interactive React task management application built with Redux Toolkit, Context API, and Tailwind CSS.",
+  description: "A modern and responsive task management application featuring advanced state management, persistent data storage, filtering, and interactive user feedback.",
+  extendedDescription: "A React-based task management application developed to explore and compare different state management approaches. Redux Toolkit handles the core task state, while React Context API manages temporary toast notifications. The application also uses localStorage persistence, modal-based task editing and deletion confirmation, smart filtering, and a responsive Tailwind CSS interface.",
+  category: "Web Application",
+  featured: false,
+
+  technologies: [
+    "React",
+    "Redux Toolkit",
+    "Context API",
+    "Tailwind CSS",
+    "JavaScript",
+    "localStorage",
+    "Font Awesome"
+  ],
+  image: "/projects/todo.png",
+  live: "https://stodolistt.netlify.app/",
+  linkedinPost: "https://www.linkedin.com/posts/saefmziri_reactjs-reduxtoolkit-tailwindcss-activity-7483626616724807680-Hl44?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF3O778BJOwLKpBGDVCGXz5RXhXo5AvDIig",
+  githubFrontend:"https://github.com/saifmziri/To-Do-List",
+  metrics: [
+    { label: "Status", value: "Academic Project" },
+    { label: "Role", value: "React Developer" },
+    { label: "State", value: "Redux + Context API" }
+  ],
+
+  features: [
+    "Create, update, delete, and manage tasks",
+    "Task editing through an interactive update modal",
+    "Confirmation modal to prevent accidental task deletion",
+    "Smart filtering by completed, incomplete, or all tasks",
+    "Persistent task storage using Redux and localStorage",
+    "Toast notifications for user actions and feedback",
+    "Responsive interface built with Tailwind CSS"
+  ],
+
+  architectureHighlights: [
+    "Redux Toolkit for centralized task state management",
+    "React Context API dedicated to toast notification state",
+    "localStorage integration for persistent task data",
+    "Component-based React architecture with reusable UI components"
+  ]
+}
 ];

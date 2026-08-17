@@ -1,154 +1,275 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Terminal, CheckCircle } from 'lucide-react';
+import {
+  SiDotnet,
+  SiLaravel,
+  SiHtml5,
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiVite,
+  SiTailwindcss,
+  SiBootstrap,
+  SiPostgresql,
+  SiSupabase,
+  SiJsonwebtokens
+} from 'react-icons/si';
+import {
+  TbBrandCSharp,
+  TbBrandCss3,
+  TbApi,
+  TbLayersIntersect,
+  TbDatabase,
+  TbStack3,
+  TbCode,
+  TbShieldCheck,
+  TbLayersIntersect2,
+  TbCircleCheck,
+  TbHierarchy2
+} from 'react-icons/tb';
 import { skillCategories } from '../../data/skillsData';
-import { SpotlightCard } from '../ui/SpotlightCard';
+
+// Official SQL Server Database Logo SVG
+const SqlServerLogo = ({ className = "w-8 h-8" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.48 2 2 4.24 2 7v10c0 2.76 4.48 5 10 5s10-2.24 10-5V7c0-2.76-4.48-5-10-5zm0 2c4.42 0 8 1.79 8 3s-3.58 3-8 3-8-1.79-8-3 3.58-3 8-3zm0 5c4.42 0 8 1.79 8 3v1.5c0 1.21-3.58 3-8 3s-8-1.79-8-3V12c0-1.21 3.58-3 8-3zm0 5.5c4.42 0 8 1.79 8 3V17c0 1.21-3.58 3-8 3s-8-1.79-8-3v-1.5c0-1.21 3.58-3 8-3z"/>
+  </svg>
+);
 
 export const SkillsMatrix: React.FC = () => {
-  const [activeCategoryId, setActiveCategoryId] = useState<string>(skillCategories[0].id);
-  const [hoveredSkillName, setHoveredSkillName] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>(skillCategories[0].id);
 
   const currentCategory =
-    skillCategories.find((cat) => cat.id === activeCategoryId) || skillCategories[0];
+    skillCategories.find((cat) => cat.id === activeCategory) || skillCategories[0];
 
-  const activeSkill = hoveredSkillName
-    ? currentCategory.skills.find((s) => s.name === hoveredSkillName)
-    : currentCategory.skills[0];
+  // Specific Icon & Hover Accent Config for EVERY Skill ID
+  const getSkillConfig = (iconKey: string, skillId?: string) => {
+    const key = skillId || iconKey;
+    switch (key) {
+      // ── 1. Backend & Desktop ──
+      case 'csharp':
+        return {
+          icon: <TbBrandCSharp className="w-8 h-8 text-[#512BD4] transition-transform group-hover:scale-110" />,
+          accent: 'border-purple-500/20 hover:border-purple-500/60 hover:shadow-purple-500/20 hover:bg-purple-950/20'
+        };
+      case 'dotnet':
+        return {
+          icon: <SiDotnet className="w-8 h-8 text-[#512BD4] transition-transform group-hover:scale-110" />,
+          accent: 'border-indigo-500/20 hover:border-indigo-500/60 hover:shadow-indigo-500/20 hover:bg-indigo-950/20'
+        };
+      case 'aspnet':
+        return {
+          icon: <TbApi className="w-8 h-8 text-[#0078D4] transition-transform group-hover:scale-110" />,
+          accent: 'border-blue-500/20 hover:border-blue-500/60 hover:shadow-blue-500/20 hover:bg-blue-950/20'
+        };
+      case 'efcore':
+        return {
+          icon: <TbLayersIntersect className="w-8 h-8 text-[#512BD4] transition-transform group-hover:scale-110" />,
+          accent: 'border-purple-500/20 hover:border-purple-500/60 hover:shadow-purple-500/20 hover:bg-purple-950/20'
+        };
+      case 'adonet':
+        return {
+          icon: <TbDatabase className="w-8 h-8 text-[#0078D4] transition-transform group-hover:scale-110" />,
+          accent: 'border-blue-500/20 hover:border-blue-500/60 hover:shadow-blue-500/20 hover:bg-blue-950/20'
+        };
+      case 'laravel':
+        return {
+          icon: <SiLaravel className="w-8 h-8 text-[#FF2D20] transition-transform group-hover:scale-110" />,
+          accent: 'border-rose-500/20 hover:border-rose-500/60 hover:shadow-rose-500/20 hover:bg-rose-950/20'
+        };
+      case 'wpf':
+        return {
+          icon: <TbStack3 className="w-8 h-8 text-[#0078D4] transition-transform group-hover:scale-110" />,
+          accent: 'border-cyan-500/20 hover:border-cyan-500/60 hover:shadow-cyan-500/20 hover:bg-cyan-950/20'
+        };
+      case 'winforms':
+        return {
+          icon: <TbCode className="w-8 h-8 text-[#0078D4] transition-transform group-hover:scale-110" />,
+          accent: 'border-sky-500/20 hover:border-sky-500/60 hover:shadow-sky-500/20 hover:bg-sky-950/20'
+        };
+
+      // ── 2. Web & Frontend ──
+      case 'html5':
+        return {
+          icon: <SiHtml5 className="w-8 h-8 text-[#E34F26] transition-transform group-hover:scale-110" />,
+          accent: 'border-orange-500/20 hover:border-orange-500/60 hover:shadow-orange-500/20 hover:bg-orange-950/20'
+        };
+      case 'css3':
+        return {
+          icon: <TbBrandCss3 className="w-8 h-8 text-[#1572B6] transition-transform group-hover:scale-110" />,
+          accent: 'border-blue-500/20 hover:border-blue-500/60 hover:shadow-blue-500/20 hover:bg-blue-950/20'
+        };
+      case 'javascript':
+        return {
+          icon: <SiJavascript className="w-8 h-8 text-[#F7DF1E] transition-transform group-hover:scale-110" />,
+          accent: 'border-yellow-400/20 hover:border-yellow-400/60 hover:shadow-yellow-400/20 hover:bg-yellow-950/20'
+        };
+      case 'typescript':
+        return {
+          icon: <SiTypescript className="w-8 h-8 text-[#3178C6] transition-transform group-hover:scale-110" />,
+          accent: 'border-blue-500/20 hover:border-blue-500/60 hover:shadow-blue-500/20 hover:bg-blue-950/20'
+        };
+      case 'react':
+        return {
+          icon: <SiReact className="w-8 h-8 text-[#61DAFB] transition-transform group-hover:scale-110" />,
+          accent: 'border-cyan-400/20 hover:border-cyan-400/60 hover:shadow-cyan-400/20 hover:bg-cyan-950/20'
+        };
+      case 'vite':
+        return {
+          icon: <SiVite className="w-8 h-8 text-[#646CFF] transition-transform group-hover:scale-110" />,
+          accent: 'border-purple-500/20 hover:border-purple-500/60 hover:shadow-purple-500/20 hover:bg-purple-950/20'
+        };
+      case 'tailwindcss':
+        return {
+          icon: <SiTailwindcss className="w-8 h-8 text-[#06B6D4] transition-transform group-hover:scale-110" />,
+          accent: 'border-teal-400/20 hover:border-teal-400/60 hover:shadow-teal-400/20 hover:bg-teal-950/20'
+        };
+      case 'bootstrap':
+        return {
+          icon: <SiBootstrap className="w-8 h-8 text-[#7952B3] transition-transform group-hover:scale-110" />,
+          accent: 'border-purple-500/20 hover:border-purple-500/60 hover:shadow-purple-500/20 hover:bg-purple-950/20'
+        };
+
+      // ── 3. Databases ──
+      case 'mssql':
+        return {
+          icon: <SqlServerLogo className="w-8 h-8 text-[#CC292B] transition-transform group-hover:scale-110" />,
+          accent: 'border-red-500/20 hover:border-red-500/60 hover:shadow-red-500/20 hover:bg-red-950/20'
+        };
+      case 'tsql':
+        return {
+          icon: <TbDatabase className="w-8 h-8 text-[#CC292B] transition-transform group-hover:scale-110" />,
+          accent: 'border-amber-500/20 hover:border-amber-500/60 hover:shadow-amber-500/20 hover:bg-amber-950/20'
+        };
+      case 'postgresql':
+        return {
+          icon: <SiPostgresql className="w-8 h-8 text-[#4169E1] transition-transform group-hover:scale-110" />,
+          accent: 'border-blue-500/20 hover:border-blue-500/60 hover:shadow-blue-500/20 hover:bg-blue-950/20'
+        };
+      case 'supabase':
+        return {
+          icon: <SiSupabase className="w-8 h-8 text-[#3ECF8E] transition-transform group-hover:scale-110" />,
+          accent: 'border-emerald-400/20 hover:border-emerald-400/60 hover:shadow-emerald-400/20 hover:bg-emerald-950/20'
+        };
+
+      // ── 4. Software Engineering & Core Concepts ──
+      case 'oop':
+        return {
+          icon: <TbShieldCheck className="w-8 h-8 text-[#10B981] transition-transform group-hover:scale-110" />,
+          accent: 'border-emerald-500/20 hover:border-emerald-500/60 hover:shadow-emerald-500/20 hover:bg-emerald-950/20'
+        };
+      case 'solid':
+        return {
+          icon: <TbLayersIntersect2 className="w-8 h-8 text-[#10B981] transition-transform group-hover:scale-110" />,
+          accent: 'border-emerald-500/20 hover:border-emerald-500/60 hover:shadow-emerald-500/20 hover:bg-emerald-950/20'
+        };
+      case 'cleancode':
+        return {
+          icon: <TbCircleCheck className="w-8 h-8 text-[#10B981] transition-transform group-hover:scale-110" />,
+          accent: 'border-emerald-500/20 hover:border-emerald-500/60 hover:shadow-emerald-500/20 hover:bg-emerald-950/20'
+        };
+      case 'cleanarch':
+        return {
+          icon: <TbStack3 className="w-8 h-8 text-[#10B981] transition-transform group-hover:scale-110" />,
+          accent: 'border-emerald-500/20 hover:border-emerald-500/60 hover:shadow-emerald-500/20 hover:bg-emerald-950/20'
+        };
+      case 'threetier':
+        return {
+          icon: <TbHierarchy2 className="w-8 h-8 text-[#10B981] transition-transform group-hover:scale-110" />,
+          accent: 'border-emerald-500/20 hover:border-emerald-500/60 hover:shadow-emerald-500/20 hover:bg-emerald-950/20'
+        };
+      case 'jwt':
+        return {
+          icon: <SiJsonwebtokens className="w-8 h-8 text-white transition-transform group-hover:scale-110" />,
+          accent: 'border-pink-500/20 hover:border-pink-500/60 hover:shadow-pink-500/20 hover:bg-pink-950/20'
+        };
+
+      default:
+        return {
+          icon: <TbCode className="w-8 h-8 text-emerald-400 transition-transform group-hover:scale-110" />,
+          accent: 'border-white/10 hover:border-emerald-500/40 hover:shadow-emerald-500/10 hover:bg-emerald-950/20'
+        };
+    }
+  };
 
   return (
-    <section id="skills" className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-white/10">
-      <div className="flex items-center gap-3 mb-12">
+    <section id="skills" className="py-20 sm:py-28 px-4 sm:px-8 max-w-7xl mx-auto border-t border-white/10">
+      {/* Section Header */}
+      <div className="flex items-center gap-3 mb-8 sm:mb-12">
         <span className="font-mono text-xs text-emerald-400 font-semibold tracking-widest uppercase">
-          03 // INTERACTIVE SKILLS MATRIX
+          03 // SKILLS & TECHNICAL STACK
         </span>
         <div className="h-px bg-white/10 flex-grow" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        <div className="lg:col-span-4 space-y-6">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
-            Technical Stack & Capabilities Matrix
-          </h2>
-          <p className="text-sm text-zinc-400 font-light leading-relaxed">
-            Hover over any technical domain to inspect detailed proficiency meters, experience depth, and implementation highlights.
-          </p>
+      {/* Header Info */}
+      <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
+        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          Technical Stack & Engineering Capabilities
+        </h2>
+        <p className="text-sm text-zinc-400 font-light leading-relaxed">
+          Production-tested frameworks, database systems, backend services, and core architectural patterns.
+        </p>
+      </div>
 
-          <div className="space-y-2 pt-2">
-            {skillCategories.map((category) => {
-              const isActive = category.id === activeCategoryId;
+      {/* Centered max-w-4xl Container wrapping Category Filter Tabs & Grid together */}
+      <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
+        {/* Top Category Filter Tabs */}
+        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5">
+          {skillCategories.map((cat) => {
+            const isActive = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-4 py-2 rounded-full font-mono text-xs font-medium transition-all flex items-center gap-2 border ${
+                  isActive
+                    ? 'bg-indigo-500/15 border-indigo-500/50 text-white shadow-lg shadow-indigo-500/10'
+                    : 'bg-zinc-900/60 border-white/10 text-zinc-400 hover:border-white/20 hover:text-white'
+                }`}
+              >
+                <span>{cat.name}</span>
+                <span className={`px-1.5 py-0.2 text-[10px] rounded-full ${isActive ? 'bg-indigo-400/20 text-indigo-300' : 'bg-white/5 text-zinc-500'}`}>
+                  {cat.skills.length}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Strict 4-Column Grid on Desktop / 2 on Mobile */}
+        <motion.div
+          layout
+          className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 sm:gap-4"
+        >
+          <AnimatePresence mode="popLayout">
+            {currentCategory.skills.map((skill) => {
+              const config = getSkillConfig(skill.icon, skill.id);
               return (
-                <button
-                  key={category.id}
-                  onClick={() => {
-                    setActiveCategoryId(category.id);
-                    setHoveredSkillName(null);
-                  }}
-                  className={`w-full text-left p-4 rounded-xl border transition-all duration-300 flex items-center justify-between ${
-                    isActive
-                      ? 'border-emerald-500/40 bg-emerald-950/20 text-white shadow-lg shadow-emerald-950/30'
-                      : 'border-white/10 bg-zinc-950/60 text-zinc-400 hover:text-zinc-200 hover:border-white/20'
-                  }`}
+                <motion.div
+                  key={skill.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  whileHover={{ y: -4, scale: 1.03 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                  className={`relative group px-4 py-5 sm:py-6 rounded-2xl border bg-zinc-900/60 backdrop-blur-md transition-all duration-300 shadow-md flex flex-col items-center justify-center text-center gap-3 sm:gap-4 ${config.accent}`}
                 >
-                  <div className="space-y-0.5">
-                    <span className="block text-xs font-mono text-emerald-400">
-                      {category.skills.length} MODULES
-                    </span>
-                    <span className="block font-semibold text-sm">{category.name}</span>
+                  {/* Official Tech Icon (TOP) */}
+                  <div className="p-2.5 rounded-2xl border border-white/10 bg-zinc-950/80 shadow-inner group-hover:scale-110 transition-transform shrink-0">
+                    {config.icon}
                   </div>
-                  <Sparkles
-                    className={`w-4 h-4 transition-transform ${
-                      isActive ? 'text-emerald-400 scale-110' : 'text-zinc-600'
-                    }`}
-                  />
-                </button>
+
+                  {/* Skill Name (BELOW) */}
+                  <h3 className="text-xs sm:text-sm font-bold text-white tracking-tight group-hover:text-cyan-300 transition-colors line-clamp-1 w-full text-center">
+                    {skill.name}
+                  </h3>
+                </motion.div>
               );
             })}
-          </div>
-        </div>
-
-        <div className="lg:col-span-8 space-y-8">
-          <SpotlightCard className="p-6 sm:p-8 space-y-8">
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-              <div>
-                <h3 className="text-xl font-bold text-white">{currentCategory.name}</h3>
-                <p className="text-xs text-zinc-400 font-light">{currentCategory.description}</p>
-              </div>
-              <span className="font-mono text-xs text-zinc-500">
-                ACTIVE FOCUS: {currentCategory.skills.length} SKILLS
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {currentCategory.skills.map((skill) => {
-                const isHovered = hoveredSkillName === skill.name;
-                return (
-                  <motion.div
-                    key={skill.name}
-                    onMouseEnter={() => setHoveredSkillName(skill.name)}
-                    whileHover={{ scale: 1.02 }}
-                    className={`p-4 rounded-xl border transition-all cursor-pointer ${
-                      isHovered
-                        ? 'border-indigo-500/60 bg-indigo-950/30 shadow-lg shadow-indigo-950/40'
-                        : 'border-white/10 bg-zinc-900/50 hover:border-white/20'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="font-semibold text-sm text-white">{skill.name}</span>
-                      <span className="px-2 py-0.5 text-[10px] font-mono rounded bg-white/5 border border-white/10 text-zinc-300">
-                        {skill.tag}
-                      </span>
-                    </div>
-
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-[11px] font-mono text-zinc-400">
-                        <span>Proficiency</span>
-                        <span className="text-indigo-400 font-bold">{skill.level}%</span>
-                      </div>
-                      <div className="h-1.5 w-full bg-zinc-800 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.level}%` }}
-                          transition={{ duration: 0.8, ease: 'easeOut' }}
-                          className="h-full bg-gradient-to-r from-indigo-500 via-cyan-400 to-emerald-400 rounded-full"
-                        />
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-            <AnimatePresence mode="wait">
-              {activeSkill && (
-                <motion.div
-                  key={activeSkill.name}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="p-5 rounded-xl border border-indigo-500/30 bg-zinc-900/80 backdrop-blur-md space-y-3"
-                >
-                  <div className="flex items-center justify-between text-xs font-mono text-indigo-400">
-                    <span className="flex items-center gap-1.5">
-                      <Terminal className="w-3.5 h-3.5" />
-                      SKILL TELEMETRY INSPECTOR
-                    </span>
-                    <span>EXPERIENCE: {activeSkill.yearsOfExp}</span>
-                  </div>
-
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <h4 className="text-lg font-bold text-white mb-1">{activeSkill.name}</h4>
-                      <p className="text-xs text-zinc-300 font-light">
-                        {activeSkill.highlight || 'Advanced client architecture and production usage.'}
-                      </p>
-                    </div>
-                    <CheckCircle className="w-5 h-5 text-emerald-400 shrink-0 ml-4" />
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </SpotlightCard>
-        </div>
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

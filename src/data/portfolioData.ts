@@ -48,6 +48,7 @@ export const personalInfo: PersonalInfo = {
   phone: "07517475043",
   github: "https://github.com/saifmziri",
   linkedin: "https://linkedin.com/in/saif-mziri-8530b037b",
+  instagram: "https://www.instagram.com/p/DM6K8uxIpr0RCboZa-sGb8dUPVMoeDCxJZwg780/",
   resumeUrl: "#",
   profileImage: "/profile.jpg",
   stats: []

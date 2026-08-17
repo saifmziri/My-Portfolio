@@ -10,6 +10,7 @@ export interface PersonalInfo {
   github: string;
   linkedin: string;
   twitter?: string;
+  instagram?: string;
   resumeUrl: string;
   profileImage: string; // Path or URL to professional developer photo
   stats: {
@@ -27,9 +28,9 @@ export interface Project {
   tagline: string;
   description: string;
   extendedDescription: string;
-  category: 'Full-Stack Web' | 'Backend & API' | 'Database System' | 'Desktop Application' | 'Systems Architecture';
+  category: 'Full-Stack Web' | 'Web Application' | 'Backend & API' | 'Database System' | 'Desktop Application' | 'Systems Architecture';
   featured: boolean;
-  technologies: string[];
+  technologies: string[]; 
   image: string;
   images?: string[];
   previewVideo?: string;
@@ -47,18 +48,17 @@ export interface Project {
   architectureHighlights: string[];
 }
 
+export interface Skill {
+  id: string;
+  name: string;
+  icon: string;
+}
+
 export interface SkillCategory {
   id: string;
   name: string;
   description: string;
-  skills: {
-    name: string;
-    level: number; // 1-100
-    icon?: string;
-    tag: string;
-    yearsOfExp: string;
-    highlight?: string;
-  }[];
+  skills: Skill[];
 }
 
 export interface ExperienceItem {
@@ -67,7 +67,7 @@ export interface ExperienceItem {
   role: string;
   company: string;
   location: string;
-  type: 'Full-time' | 'Contract' | 'Open Source' | 'Education';
+  type: 'Full-time' | 'Contract' | 'Open Source' | 'Education' | 'Certification';
   summary: string;
   achievements: string[];
   technologies: string[];

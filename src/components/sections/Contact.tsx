@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Copy, Check, Send, Sparkles, Phone } from 'lucide-react';
+import { Mail, Copy, Check, Send, Sparkles, Phone, AlertCircle } from 'lucide-react';
+import { SiInstagram } from 'react-icons/si';
 import { personalInfo } from '../../data/portfolioData';
 import { SpotlightCard } from '../ui/SpotlightCard';
 import { MagneticButton } from '../animations/MagneticButton';
@@ -12,6 +13,7 @@ export const Contact: React.FC = () => {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [formError, setFormError] = useState<string | null>(null);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(personalInfo.email);
@@ -27,14 +29,41 @@ export const Contact: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) return;
+
     setIsSubmitting(true);
-    setTimeout(() => {
+    setFormError(null);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+          subject: `Portfolio Message from ${formState.name}`
+        })
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setFormSubmitted(true);
+        setFormState({ name: '', email: '', message: '' });
+      } else {
+        setFormError(result.message || 'Failed to send message. Please try again.');
+      }
+    } catch (err) {
+      setFormError('Network error occurred. Please try again later.');
+    } finally {
       setIsSubmitting(false);
-      setFormSubmitted(true);
-    }, 1000);
+    }
   };
 
   return (
@@ -137,20 +166,31 @@ export const Contact: React.FC = () => {
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2.5 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-zinc-300 hover:text-white hover:border-white/20 transition-all flex items-center gap-2"
+                className="px-4.5 py-2.5 rounded-full border border-zinc-700/80 bg-zinc-900/60 text-xs font-mono text-zinc-300 hover:text-white hover:border-zinc-500 hover:bg-zinc-800/50 hover:shadow-lg transition-all flex items-center gap-2"
               >
-                <GithubIcon className="w-4 h-4" />
+                <GithubIcon className="w-4 h-4 text-zinc-300" />
                 <span>GitHub</span>
               </a>
               <a
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2.5 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-zinc-300 hover:text-white hover:border-white/20 transition-all flex items-center gap-2"
+                className="px-4.5 py-2.5 rounded-full border border-sky-500/30 bg-sky-950/20 text-xs font-mono text-sky-400 hover:text-sky-300 hover:border-sky-400 hover:bg-sky-500/10 hover:shadow-[0_0_15px_rgba(56,189,248,0.2)] transition-all flex items-center gap-2"
               >
-                <LinkedinIcon className="w-4 h-4" />
+                <LinkedinIcon className="w-4 h-4 text-sky-400" />
                 <span>LinkedIn</span>
               </a>
+              {personalInfo.instagram && (
+                <a
+                  href={personalInfo.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4.5 py-2.5 rounded-full border border-pink-500/30 bg-pink-950/20 text-xs font-mono text-pink-400 hover:text-pink-300 hover:border-pink-400 hover:bg-pink-500/10 hover:shadow-[0_0_15px_rgba(236,72,153,0.2)] transition-all flex items-center gap-2"
+                >
+                  <SiInstagram className="w-4 h-4 text-pink-400" />
+                  <span>Instagram</span>
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -168,9 +208,9 @@ export const Contact: React.FC = () => {
                   <div className="w-16 h-16 rounded-full bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
                     <Sparkles className="w-8 h-8" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Message Sent</h3>
+                  <h3 className="text-2xl font-bold text-white">Message Sent Successfully!</h3>
                   <p className="text-sm text-zinc-400 font-light max-w-sm mx-auto">
-                    Thank you for contacting me! I’ve received your transmission and will respond shortly.
+                    Thank you for reaching out! Your message has been transmitted and I will get back to you shortly.
                   </p>
                   <button
                     onClick={() => {
@@ -188,6 +228,13 @@ export const Contact: React.FC = () => {
                     <h3 className="text-lg font-bold text-white">Direct Dispatch</h3>
                     <span className="text-xs font-mono text-zinc-500">SAIF.DEV // V2.0</span>
                   </div>
+
+                  {formError && (
+                    <div className="p-3 rounded-lg border border-rose-500/30 bg-rose-950/30 text-rose-300 text-xs font-mono flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                      <span>{formError}</span>
+                    </div>
+                  )}
 
                   <div className="space-y-4">
                     <div>
@@ -236,14 +283,14 @@ export const Contact: React.FC = () => {
                   <MagneticButton
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-sm font-semibold flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/20 transition-all disabled:opacity-50"
+                    className="w-full mt-6 py-4 px-8 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-indigo-600 hover:from-indigo-500 hover:to-indigo-400 text-white text-base font-semibold tracking-wide flex items-center justify-center gap-2.5 shadow-xl shadow-indigo-600/25 transition-all disabled:opacity-50"
                   >
                     {isSubmitting ? (
-                      <span className="font-mono text-xs animate-pulse">Transmitting...</span>
+                      <span className="font-mono text-sm animate-pulse">Sending...</span>
                     ) : (
                       <>
                         <span>Transmit Message</span>
-                        <Send className="w-4 h-4" />
+                        <Send className="w-4.5 h-4.5" />
                       </>
                     )}
                   </MagneticButton>

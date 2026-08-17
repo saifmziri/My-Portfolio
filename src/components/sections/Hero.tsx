@@ -56,8 +56,8 @@ const DeveloperPhotoComposition: React.FC = () => {
       {/* Floating photo wrapper */}
       <div ref={photoRef} className="relative w-full max-w-[340px] lg:max-w-[380px] mx-auto">
 
-        {/* ─── 3D ORBITAL RING EFFECT (BEHIND LAYER - z-0) ────────────────── */}
-        <div className="absolute -inset-10 sm:-inset-16 pointer-events-none z-0 overflow-visible flex items-center justify-center">
+        {/* ─── 3D ORBITAL RING EFFECT (BEHIND LAYER - z-0) — desktop only ── */}
+        <div className="hidden md:flex absolute -inset-10 sm:-inset-16 pointer-events-none z-0 overflow-visible items-center justify-center">
           <svg
             viewBox="0 0 500 600"
             className="w-[125%] h-[125%] overflow-visible"
@@ -77,7 +77,7 @@ const DeveloperPhotoComposition: React.FC = () => {
                 </feMerge>
               </filter>
             </defs>
-            <g transform="translate(250, 310) rotate(-16)">
+            <g transform="translate(250, 390) rotate(-16)">
               {/* Back Arc: passes behind upper torso/shoulders */}
               <path
                 d="M -225 0 A 225 68 0 0 0 225 0"
@@ -128,17 +128,126 @@ const DeveloperPhotoComposition: React.FC = () => {
           </svg>
         </div>
 
-        {/* Outer corner brackets — subtle technical framing */}
-        <div className="absolute -top-4 -left-4 w-9 h-9 border-t-[1.5px] border-l-[1.5px] border-indigo-400/60 rounded-tl-xl z-20" />
-        <div className="absolute -top-4 -right-4 w-9 h-9 border-t-[1.5px] border-r-[1.5px] border-indigo-400/60 rounded-tr-xl z-20" />
-        <div className="absolute -bottom-4 -left-4 w-9 h-9 border-b-[1.5px] border-l-[1.5px] border-indigo-400/60 rounded-bl-xl z-20" />
-        <div className="absolute -bottom-4 -right-4 w-9 h-9 border-b-[1.5px] border-r-[1.5px] border-indigo-400/60 rounded-br-xl z-20" />
+        {/* Outer corner brackets — desktop only */}
+        <div className="hidden md:block absolute -top-4 -left-4 w-9 h-9 border-t-[1.5px] border-l-[1.5px] border-indigo-400/60 rounded-tl-xl z-20" />
+        <div className="hidden md:block absolute -top-4 -right-4 w-9 h-9 border-t-[1.5px] border-r-[1.5px] border-indigo-400/60 rounded-tr-xl z-20" />
+        <div className="hidden md:block absolute -bottom-4 -left-4 w-9 h-9 border-b-[1.5px] border-l-[1.5px] border-indigo-400/60 rounded-bl-xl z-20" />
+        <div className="hidden md:block absolute -bottom-4 -right-4 w-9 h-9 border-b-[1.5px] border-r-[1.5px] border-indigo-400/60 rounded-br-xl z-20" />
 
-        {/* Subtle accent line */}
-        <div className="absolute top-1/3 -left-8 right-0 h-px bg-gradient-to-r from-indigo-500/40 via-transparent to-transparent z-20 pointer-events-none" />
+        {/* Subtle accent line — desktop only */}
+        <div className="hidden md:block absolute top-1/3 -left-8 right-0 h-px bg-gradient-to-r from-indigo-500/40 via-transparent to-transparent z-20 pointer-events-none" />
 
-        {/* Main photo container (z-10) */}
-        <div className="relative z-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/70 aspect-[3/4]">
+        {/* ── MOBILE AVATAR COMPOSITION (md+: hidden) ── */}
+
+        {/* z-5 · orbit BACK arc — renders behind the avatar */}
+        <div className="md:hidden absolute inset-0 flex items-center justify-center z-[5] pointer-events-none overflow-visible">
+          <svg
+            viewBox="0 0 220 220"
+            className="w-44 h-44 sm:w-52 sm:h-52 overflow-visible"
+            fill="none"
+          >
+            <defs>
+              <linearGradient id="mob-orbit-back" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"  stopColor="#6366f1" stopOpacity="0.25" />
+                <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.65" />
+                <stop offset="100%" stopColor="#a855f7" stopOpacity="0.25" />
+              </linearGradient>
+              <filter id="mob-glow-back" x="-30%" y="-80%" width="160%" height="260%">
+                <feGaussianBlur stdDeviation="2" result="b" />
+                <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+            </defs>
+            {/* Back (upper) arc — left to right */}
+            <path
+              d="M -2 135 A 112 28 0 0 1 222 135"
+              stroke="url(#mob-orbit-back)"
+              strokeWidth="1.5"
+              strokeDasharray="7 4"
+              filter="url(#mob-glow-back)"
+              opacity="0.9"
+            />
+            <path
+              d="M -2 135 A 112 28 0 0 1 222 135"
+              stroke="#818cf8"
+              strokeWidth="0.75"
+              strokeOpacity="0.5"
+            />
+            {/* Particle on back arc */}
+            <circle r="2.5" fill="#38bdf8" filter="url(#mob-glow-back)">
+              <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.48;0.5;0.98;1" dur="10s" repeatCount="indefinite" />
+              <animateMotion path="M -2 135 A 112 28 0 0 1 222 135" dur="5s" repeatCount="indefinite" />
+            </circle>
+          </svg>
+        </div>
+
+        {/* z-10 · circular avatar frame */}
+        <div className="
+          relative z-10 mx-auto
+          w-44 h-44 sm:w-52 sm:h-52
+          md:hidden
+          rounded-full
+          overflow-hidden
+          border-2 border-indigo-500/40
+          shadow-[0_0_28px_rgba(99,102,241,0.3)]
+        ">
+          <img
+            src={personalInfo.profileImage}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = developerPhotoPlaceholder;
+            }}
+            alt={`${personalInfo.name} — ${personalInfo.title}`}
+            className="w-full h-full object-cover object-top"
+            loading="eager"
+            draggable={false}
+          />
+        </div>
+
+        {/* z-20 · orbit ring FRONT arc — in front of the circle, lower half */}
+        <div className="md:hidden absolute inset-0 flex items-center justify-center z-20 pointer-events-none overflow-visible">
+          <svg
+            viewBox="0 0 220 220"
+            className="w-44 h-44 sm:w-52 sm:h-52 overflow-visible"
+            fill="none"
+          >
+            <defs>
+              <linearGradient id="mob-orbit-front" x1="100%" y1="0%" x2="0%" y2="0%">
+                <stop offset="0%"  stopColor="#a855f7" stopOpacity="0.35" />
+                <stop offset="50%" stopColor="#38bdf8" stopOpacity="1" />
+                <stop offset="100%" stopColor="#818cf8" stopOpacity="0.5" />
+              </linearGradient>
+              <filter id="mob-glow-front" x="-30%" y="-80%" width="160%" height="260%">
+                <feGaussianBlur stdDeviation="2.5" result="b" />
+                <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+            </defs>
+            {/* Front (lower) arc — right to left */}
+            <path
+              d="M 222 135 A 112 28 0 0 1 -2 135"
+              stroke="url(#mob-orbit-front)"
+              strokeWidth="2"
+              strokeDasharray="9 5"
+              filter="url(#mob-glow-front)"
+            />
+            <path
+              d="M 222 135 A 112 28 0 0 1 -2 135"
+              stroke="#38bdf8"
+              strokeWidth="1"
+              strokeOpacity="0.85"
+            />
+            {/* Particle on front arc */}
+            <circle r="3" fill="#38bdf8" filter="url(#mob-glow-front)">
+              <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.49;0.51;0.98;1" dur="10s" repeatCount="indefinite" />
+              <animateMotion path="M 222 135 A 112 28 0 0 1 -2 135" dur="5s" repeatCount="indefinite" />
+            </circle>
+            <circle r="2.5" fill="#c084fc" filter="url(#mob-glow-front)">
+              <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.47;0.5;0.97;1" dur="10s" repeatCount="indefinite" />
+              <animateMotion path="M 222 135 A 112 28 0 0 1 -2 135" dur="5s" repeatCount="indefinite" begin="2.5s" />
+            </circle>
+          </svg>
+        </div>
+
+        {/* ── DESKTOP: full styled rectangular card ── */}
+        <div className="hidden md:block relative z-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/70 aspect-[3/4]">
           {/* Developer Photo with fallback */}
           <img
             src={personalInfo.profileImage}
@@ -169,7 +278,7 @@ const DeveloperPhotoComposition: React.FC = () => {
         </div>
 
         {/* ─── 3D ORBITAL RING EFFECT (FRONT LAYER - z-30) ────────────────── */}
-        <div className="absolute -inset-10 sm:-inset-16 pointer-events-none z-30 overflow-visible flex items-center justify-center">
+        <div className="hidden md:flex absolute -inset-10 sm:-inset-16 pointer-events-none z-30 overflow-visible items-center justify-center">
           <svg
             viewBox="0 0 500 600"
             className="w-[125%] h-[125%] overflow-visible"
@@ -189,7 +298,7 @@ const DeveloperPhotoComposition: React.FC = () => {
                 </feMerge>
               </filter>
             </defs>
-            <g transform="translate(250, 310) rotate(-16)">
+            <g transform="translate(250, 390) rotate(-16)">
               {/* Front Arc: passes in front of mid/lower torso */}
               <path
                 d="M 225 0 A 225 68 0 0 0 -225 0"
@@ -307,11 +416,10 @@ export const Hero: React.FC = () => {
             ref={headlineRef}
             className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.05]"
           >
-            Building{' '}
+            Building end-to-end full-stack applications{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-400">
-              robust software
-            </span>{' '}
-            from backend to frontend.
+              with clean architecture.
+            </span>
           </h1>
 
           <motion.p
@@ -320,7 +428,7 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-xl text-base sm:text-lg text-zinc-400 font-light leading-relaxed"
           >
-            {personalInfo.bio}
+            Computer Science student & Full-Stack Developer with a strong focus on software engineering principles, clean code, and high-performance systems.
           </motion.p>
 
           {/* Action CTAs & Social Links */}
@@ -373,7 +481,7 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Right Column: Developer Photo Composition */}
-        <div className="order-1 lg:order-2 flex justify-center">
+        <div className="order-1 lg:order-2 flex justify-center py-4 md:py-0">
           <DeveloperPhotoComposition />
         </div>
       </div>
