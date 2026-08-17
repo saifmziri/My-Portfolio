@@ -53,7 +53,7 @@ export const CustomCursor: React.FC = () => {
     <>
       {/* Small Precision Dot */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-50 rounded-full bg-white mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-50 rounded-full bg-[#C8F23D]"
         animate={{
           x: position.x - (isHovered ? 8 : 4),
           y: position.y - (isHovered ? 8 : 4),
@@ -65,7 +65,7 @@ export const CustomCursor: React.FC = () => {
       />
       {/* Outer Subtle Ambient Ring */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-40 rounded-full border border-white/20"
+        className="fixed top-0 left-0 pointer-events-none z-40 rounded-full border border-[#68705A]/40"
         animate={{
           x: position.x - (isHovered ? 24 : 16),
           y: position.y - (isHovered ? 24 : 16),

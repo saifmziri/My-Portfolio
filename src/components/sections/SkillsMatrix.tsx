@@ -180,7 +180,7 @@ export const SkillsMatrix: React.FC = () => {
         };
       case 'jwt':
         return {
-          icon: <SiJsonwebtokens className="w-8 h-8 text-white transition-transform group-hover:scale-110" />,
+          icon: <SiJsonwebtokens className="w-8 h-8 text-[#E8EAE3] transition-transform group-hover:scale-110" />,
           accent: 'border-pink-500/20 hover:border-pink-500/60 hover:shadow-pink-500/20 hover:bg-pink-950/20'
         };
 
@@ -193,21 +193,21 @@ export const SkillsMatrix: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="py-20 sm:py-28 px-4 sm:px-8 max-w-7xl mx-auto border-t border-white/10">
+    <section id="skills" className="py-20 sm:py-28 px-4 sm:px-8 max-w-7xl mx-auto border-t border-[#3F4739]">
       {/* Section Header */}
       <div className="flex items-center gap-3 mb-8 sm:mb-12">
-        <span className="font-mono text-xs text-emerald-400 font-semibold tracking-widest uppercase">
+        <span className="font-mono text-xs text-[#68705A] font-semibold tracking-widest uppercase">
           03 // SKILLS & TECHNICAL STACK
         </span>
-        <div className="h-px bg-white/10 flex-grow" />
+        <div className="h-px bg-[#3F4739] flex-grow" />
       </div>
 
       {/* Header Info */}
       <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
-        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+        <h2 className="text-3xl sm:text-4xl font-bold text-[#E8EAE3] tracking-tight">
           Technical Stack & Engineering Capabilities
         </h2>
-        <p className="text-sm text-zinc-400 font-light leading-relaxed">
+        <p className="text-sm text-[#969B91] font-light leading-relaxed">
           Production-tested frameworks, database systems, backend services, and core architectural patterns.
         </p>
       </div>
@@ -224,12 +224,12 @@ export const SkillsMatrix: React.FC = () => {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`px-4 py-2 rounded-full font-mono text-xs font-medium transition-all flex items-center gap-2 border ${
                   isActive
-                    ? 'bg-indigo-500/15 border-indigo-500/50 text-white shadow-lg shadow-indigo-500/10'
-                    : 'bg-zinc-900/60 border-white/10 text-zinc-400 hover:border-white/20 hover:text-white'
+                    ? 'bg-sky-500/15 border-sky-500/50 text-[#E8EAE3] shadow-lg shadow-sky-500/15'
+                    : 'bg-slate-900/60 border-[#3F4739] text-[#969B91] hover:border-slate-700 hover:text-slate-200'
                 }`}
               >
                 <span>{cat.name}</span>
-                <span className={`px-1.5 py-0.2 text-[10px] rounded-full ${isActive ? 'bg-indigo-400/20 text-indigo-300' : 'bg-white/5 text-zinc-500'}`}>
+                <span className={`px-1.5 py-0.2 text-[10px] rounded-full ${isActive ? 'bg-sky-400/20 text-sky-300' : 'bg-[#3F4739]/60 text-[#68705A]'}`}>
                   {cat.skills.length}
                 </span>
               </button>
@@ -254,15 +254,15 @@ export const SkillsMatrix: React.FC = () => {
                   exit={{ opacity: 0, scale: 0.95 }}
                   whileHover={{ y: -4, scale: 1.03 }}
                   transition={{ duration: 0.2, ease: 'easeOut' }}
-                  className={`relative group px-4 py-5 sm:py-6 rounded-2xl border bg-zinc-900/60 backdrop-blur-md transition-all duration-300 shadow-md flex flex-col items-center justify-center text-center gap-3 sm:gap-4 ${config.accent}`}
+                  className={`relative group px-4 py-5 sm:py-6 rounded-2xl border border-[#3F4739] bg-[#0F172A]/60 hover:bg-slate-900/80 backdrop-blur-md transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(14,165,233,0.12)] flex flex-col items-center justify-center text-center gap-3 sm:gap-4 ${config.accent}`}
                 >
                   {/* Official Tech Icon (TOP) */}
-                  <div className="p-2.5 rounded-2xl border border-white/10 bg-zinc-950/80 shadow-inner group-hover:scale-110 transition-transform shrink-0">
+                  <div className="p-2.5 rounded-2xl border border-[#3F4739] bg-[#0B0F17]/80 shadow-inner group-hover:scale-110 transition-transform shrink-0">
                     {config.icon}
                   </div>
 
                   {/* Skill Name (BELOW) */}
-                  <h3 className="text-xs sm:text-sm font-bold text-white tracking-tight group-hover:text-cyan-300 transition-colors line-clamp-1 w-full text-center">
+                  <h3 className="text-xs sm:text-sm font-bold text-[#E8EAE3] tracking-tight group-hover:text-[#E8EAE3] transition-colors line-clamp-1 w-full text-center">
                     {skill.name}
                   </h3>
                 </motion.div>

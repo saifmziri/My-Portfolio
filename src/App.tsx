@@ -11,7 +11,7 @@ import { Footer } from './components/layout/Footer';
 
 export const App: React.FC = () => {
   return (
-    <div className="relative min-h-screen bg-zinc-950 text-zinc-100 selection:bg-indigo-500/30 selection:text-white font-sans antialiased">
+    <div className="relative min-h-screen bg-[#111311] text-[#E8EAE3] selection:bg-[#C8F23D]/25 selection:text-[#E8EAE3] font-sans antialiased">
       {/* Custom Precision Cursor */}
       <CustomCursor />
 

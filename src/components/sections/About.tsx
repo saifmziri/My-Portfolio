@@ -114,34 +114,34 @@ export const About: React.FC = () => {
     <section
       ref={sectionRef}
       id="about"
-      className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-white/10"
+      className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-[#3F4739]"
     >
       {/* 1. Section Title */}
       <div className="flex items-center gap-3 mb-12 sm:mb-16">
-        <span className="font-mono text-xs text-indigo-400 font-semibold tracking-widest uppercase">
+        <span className="font-mono text-xs text-[#68705A] font-semibold tracking-widest uppercase">
           01 // ABOUT
         </span>
-        <div className="h-px bg-white/10 flex-grow" />
+        <div className="h-px bg-[#3F4739] flex-grow" />
       </div>
 
       {/* 2. Personal Introduction (Short, Natural & Developer-Focused) */}
       <div ref={textRef} className="space-y-6 max-w-4xl">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-snug">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#E8EAE3] tracking-tight leading-snug">
           I am a Computer Science student and Full-Stack Developer focused on building web applications, backend systems, APIs, database-driven applications, and desktop applications.
         </h2>
-        <p className="text-zinc-400 text-base sm:text-lg font-light leading-relaxed max-w-3xl">
+        <p className="text-[#969B91] text-base sm:text-lg font-light leading-relaxed max-w-3xl">
           I care about writing clean, maintainable software and building systems with clear structure and separation of responsibilities.
         </p>
       </div>
 
       {/* 3. Animated Statistics Grid */}
-      <div className="grid grid-cols-3 text-center gap-2 sm:gap-8 py-6 sm:py-10 border-y border-white/10 my-10 sm:my-16">
+      <div className="grid grid-cols-3 text-center gap-2 sm:gap-8 py-6 sm:py-10 border-y border-[#3F4739] my-10 sm:my-16">
         {aboutStats.map((stat, idx) => (
           <div key={idx} className="space-y-1 sm:space-y-2">
-            <div className="text-2xl sm:text-5xl font-bold font-mono text-white tracking-tight">
+            <div className="text-2xl sm:text-5xl font-bold font-mono text-[#E8EAE3] tracking-tight">
               <AnimatedCounter target={stat.target} suffix={stat.suffix} />
             </div>
-            <div className="text-[10px] sm:text-xs font-mono text-indigo-400 uppercase tracking-wider sm:tracking-widest font-semibold">
+            <div className="text-[10px] sm:text-xs font-mono text-[#68705A] uppercase tracking-wider sm:tracking-widest font-semibold">
               {stat.label}
             </div>
           </div>
@@ -150,25 +150,25 @@ export const About: React.FC = () => {
 
       {/* 4. Engineering Principles — Editorial Typographic List (NO CARDS) */}
       <div className="pt-4">
-        <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6 sm:mb-8">
+        <div className="flex items-center justify-between border-b border-[#3F4739] pb-4 mb-6 sm:mb-8">
           <h3 className="text-xs font-mono text-zinc-400 uppercase tracking-widest">
             ENGINEERING PRINCIPLES
           </h3>
-          <span className="text-xs font-mono text-zinc-600">04 ARCHITECTURAL PILLARS</span>
+          <span className="text-xs font-mono text-[#68705A]">04 ARCHITECTURAL PILLARS</span>
         </div>
 
-        <div className="divide-y divide-white/10">
+        <div className="divide-y divide-slate-800/80">
           {engineeringPrinciples.map((principle) => (
             <div
               key={principle.number}
-              className="group py-6 sm:py-7 transition-colors duration-300 hover:bg-white/[0.015] px-2 rounded-lg"
+              className="group py-6 sm:py-7 transition-colors duration-300 hover:bg-[#1B1E1A]/60 px-2 rounded-lg"
             >
               <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 items-baseline">
                 <div className="md:col-span-5 flex items-baseline gap-4 sm:gap-6">
-                  <span className="font-mono text-sm sm:text-base text-indigo-400 font-semibold shrink-0">
+                  <span className="font-mono text-sm sm:text-base text-[#68705A] font-semibold shrink-0">
                     {principle.number}
                   </span>
-                  <h4 className="text-xl sm:text-2xl font-bold text-white tracking-tight group-hover:text-cyan-300 transition-colors">
+                  <h4 className="text-xl sm:text-2xl font-bold text-[#E8EAE3] tracking-tight group-hover:text-[#68705A] transition-colors">
                     {principle.title}
                   </h4>
                 </div>
