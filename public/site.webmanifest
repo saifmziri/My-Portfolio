@@ -1,0 +1,16 @@
+{
+  "name": "Saif Abdulqadir | Full-Stack Developer",
+  "short_name": "Saif Dev",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111311",
+  "theme_color": "#111311"
+}

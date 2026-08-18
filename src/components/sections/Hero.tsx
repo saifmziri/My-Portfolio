@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, Sparkles } from 'lucide-react';
 import { personalInfo, developerPhotoPlaceholder } from '../../data/portfolioData';
 import { MagneticButton } from '../animations/MagneticButton';
-import { GithubIcon, LinkedinIcon } from '../ui/Icons';
+import { GithubIcon, LinkedinIcon, InstagramIcon } from '../ui/Icons';
 import { useGsapContext } from '../../hooks/useGsapContext';
 import gsap from 'gsap';
 
@@ -462,7 +462,7 @@ export const Hero: React.FC = () => {
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full border border-[#3F4739] bg-[#1B1E1A] text-[#969B91] hover:text-[#E8EAE3] hover:border-white/20 transition-all"
+                className="btn-social-github"
                 aria-label="GitHub Profile"
               >
                 <GithubIcon className="w-4 h-4" />
@@ -471,11 +471,22 @@ export const Hero: React.FC = () => {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full border border-[#3F4739] bg-[#1B1E1A] text-[#969B91] hover:text-[#E8EAE3] hover:border-white/20 transition-all"
+                className="btn-social-linkedin"
                 aria-label="LinkedIn Profile"
               >
                 <LinkedinIcon className="w-4 h-4" />
               </a>
+              {personalInfo.instagram && (
+                <a
+                  href={personalInfo.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-social-instagram"
+                  aria-label="Instagram Profile"
+                >
+                  <InstagramIcon className="w-4 h-4" />
+                </a>
+              )}
             </div>
           </motion.div>
         </div>

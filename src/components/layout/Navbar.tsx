@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Code2 } from 'lucide-react';
+import { Menu, X, Code2, ChevronRight, MapPin, Sparkles } from 'lucide-react';
 import { personalInfo } from '../../data/portfolioData';
 import { MagneticButton } from '../animations/MagneticButton';
+import { GithubIcon, LinkedinIcon, InstagramIcon } from '../ui/Icons';
 
 const navItems = [
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Education', href: '#experience' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'About', href: '#about', desc: 'Bio & Engineering Pillars' },
+  { name: 'Projects', href: '#projects', desc: 'Selected Production Systems' },
+  { name: 'Skills', href: '#skills', desc: 'Tech Stack & Capabilities' },
+  { name: 'Education', href: '#experience', desc: 'Background & Certifications' },
+  { name: 'Contact', href: '#contact', desc: 'Direct Message & Inquiries' },
 ];
 
 export const Navbar: React.FC = () => {
@@ -98,50 +99,127 @@ export const Navbar: React.FC = () => {
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2.5 rounded-full border border-[#293029] bg-[#141814]/90 text-[#969B91] hover:text-[#E8EDE5] backdrop-blur-md shadow-lg"
+              className="md:hidden p-2.5 rounded-full border border-[#3F4739] bg-[#1B1E1A]/90 text-[#969B91] hover:text-[#E8EAE3] backdrop-blur-md shadow-lg transition-transform active:scale-95"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 text-[#C8F23D]" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Drawer Menu */}
+      {/* Sleek Floating Glass Mobile Dropdown Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-30 pt-24 px-6 bg-[#111311]/95 backdrop-blur-xl border-b border-[#3F4739] md:hidden flex flex-col justify-between pb-12"
-          >
-            <div className="space-y-4">
-              <span className="text-xs font-mono text-[#969B91] uppercase tracking-widest block mb-4">
-                Navigation
-              </span>
-              {navItems.map((item, idx) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block text-2xl font-bold text-[#E8EAE3] hover:text-[#C8F23D] transition-colors"
-                >
-                  <span className="text-xs font-mono text-[#68705A] mr-3">0{idx + 1}.</span>
-                  {item.name}
-                </a>
-              ))}
-            </div>
+          <>
+            {/* Backdrop Blur Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 z-30 bg-black/60 backdrop-blur-sm md:hidden"
+            />
 
-            <div className="border-t border-[#3F4739] pt-6 space-y-4">
-              <a
-                href={`mailto:${personalInfo.email}`}
-                className="block text-center w-full py-3 rounded-xl bg-[#C8F23D] text-[#111311] font-semibold text-sm hover:bg-[#D5FF63] transition-colors"
-              >
-                Get in Touch
-              </a>
-            </div>
-          </motion.div>
+            {/* Floating Dropdown Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -16 }}
+              transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+              className="fixed top-20 inset-x-4 max-w-md mx-auto z-40 rounded-3xl border border-[#3F4739] bg-[#1B1E1A]/95 backdrop-blur-2xl shadow-2xl p-5 space-y-5 md:hidden overflow-hidden"
+            >
+              {/* Header inside card: Status & Category */}
+              <div className="flex items-center justify-between pb-3 border-b border-[#3F4739]">
+                <div className="flex items-center gap-2 text-[11px] font-mono text-[#969B91]">
+                  <Sparkles className="w-3.5 h-3.5 text-[#C8F23D]" />
+                  <span>NAVIGATION</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-[#C8F23D]/30 bg-[#C8F23D]/10 text-[10px] font-mono text-[#C8F23D]">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C8F23D] opacity-75" />
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#C8F23D]" />
+                  </span>
+                  <span>AVAILABLE</span>
+                </div>
+              </div>
+
+              {/* Navigation List */}
+              <div className="space-y-1.5">
+                {navItems.map((item, idx) => {
+                  const isActive = activeSection === item.href.substring(1);
+                  return (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`group flex items-center justify-between p-3 rounded-2xl border transition-all duration-200 ${
+                        isActive
+                          ? 'border-[#68705A] bg-[#222720] text-[#E8EAE3]'
+                          : 'border-transparent hover:border-[#3F4739] hover:bg-[#111311]/50 text-[#969B91] hover:text-[#E8EAE3]'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="font-mono text-xs text-[#C8F23D] font-bold">
+                          0{idx + 1}.
+                        </span>
+                        <div>
+                          <div className="text-base font-bold text-[#E8EAE3] tracking-tight group-hover:text-[#C8F23D] transition-colors">
+                            {item.name}
+                          </div>
+                          <div className="text-[10px] font-mono text-[#787268] group-hover:text-[#969B91] transition-colors">
+                            {item.desc}
+                          </div>
+                        </div>
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-[#68705A] group-hover:text-[#C8F23D] group-hover:translate-x-0.5 transition-all" />
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* Footer Info inside Card */}
+              <div className="pt-3 border-t border-[#3F4739] flex items-center justify-between">
+                <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#787268]">
+                  <MapPin className="w-3 h-3 text-[#68705A]" />
+                  <span>DUHOK, IRAQ</span>
+                </div>
+
+                {/* Quick Social Buttons */}
+                <div className="flex items-center gap-2">
+                  <a
+                    href={personalInfo.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full border border-[#3F4739] bg-[#111311] text-[#969B91] hover:text-[#E8EAE3] hover:border-[#68705A] transition-colors"
+                    aria-label="GitHub Profile"
+                  >
+                    <GithubIcon className="w-3.5 h-3.5" />
+                  </a>
+                  <a
+                    href={personalInfo.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full border border-[#3F4739] bg-[#111311] text-[#969B91] hover:text-sky-400 hover:border-sky-500/40 hover:bg-sky-500/10 transition-colors"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <LinkedinIcon className="w-3.5 h-3.5" />
+                  </a>
+                  {personalInfo.instagram && (
+                    <a
+                      href={personalInfo.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full border border-pink-500/30 bg-pink-950/30 text-pink-400 hover:text-pink-300 hover:border-pink-400 hover:bg-pink-500/20 hover:shadow-[0_0_15px_rgba(236,72,153,0.3)] transition-all flex items-center justify-center"
+                      aria-label="Instagram Profile"
+                    >
+                      <InstagramIcon className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

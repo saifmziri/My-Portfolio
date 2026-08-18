@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Copy, Check, Send, Sparkles, Phone, AlertCircle } from 'lucide-react';
-import { SiInstagram } from 'react-icons/si';
+
 import { personalInfo } from '../../data/portfolioData';
 import { SpotlightCard } from '../ui/SpotlightCard';
 import { MagneticButton } from '../animations/MagneticButton';
-import { GithubIcon, LinkedinIcon } from '../ui/Icons';
+import { GithubIcon, LinkedinIcon, InstagramIcon } from '../ui/Icons';
 
 export const Contact: React.FC = () => {
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
@@ -175,9 +175,9 @@ export const Contact: React.FC = () => {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4.5 py-2.5 rounded-full border border-sky-500/30 bg-sky-950/20 text-xs font-mono text-[#B8F34A] hover:text-sky-300 hover:border-sky-400 hover:bg-sky-500/10 hover:shadow-[0_0_15px_rgba(56,189,248,0.2)] transition-all flex items-center gap-2"
+                className="px-4.5 py-2.5 rounded-full border border-sky-500/30 bg-sky-950/30 text-xs font-mono text-sky-400 hover:text-sky-300 hover:border-sky-400 hover:bg-sky-500/20 hover:shadow-[0_0_15px_rgba(56,189,248,0.3)] transition-all flex items-center gap-2"
               >
-                <LinkedinIcon className="w-4 h-4 text-[#B8F34A]" />
+                <LinkedinIcon className="w-4 h-4 text-sky-400" />
                 <span>LinkedIn</span>
               </a>
               {personalInfo.instagram && (
@@ -185,9 +185,9 @@ export const Contact: React.FC = () => {
                   href={personalInfo.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4.5 py-2.5 rounded-full border border-pink-500/30 bg-pink-950/20 text-xs font-mono text-[#B8F34A] hover:text-pink-300 hover:border-pink-400 hover:bg-pink-500/10 hover:shadow-[0_0_15px_rgba(236,72,153,0.2)] transition-all flex items-center gap-2"
+                  className="px-4.5 py-2.5 rounded-full border border-pink-500/30 bg-pink-950/30 text-xs font-mono text-pink-400 hover:text-pink-300 hover:border-pink-400 hover:bg-pink-500/20 hover:shadow-[0_0_15px_rgba(236,72,153,0.3)] transition-all flex items-center gap-2"
                 >
-                  <SiInstagram className="w-4 h-4 text-[#B8F34A]" />
+                  <InstagramIcon className="w-4 h-4 text-pink-400" />
                   <span>Instagram</span>
                 </a>
               )}
