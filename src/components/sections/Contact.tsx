@@ -246,7 +246,6 @@ export const Contact: React.FC = () => {
                         required
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                        placeholder="John Doe"
                         className="w-full px-4 py-3 rounded-lg border border-[#3F4739] bg-[#111311] text-[#E8EAE3] text-sm focus:outline-none focus:border-[#C8F23D] transition-colors font-light"
                       />
                     </div>
@@ -260,7 +259,6 @@ export const Contact: React.FC = () => {
                         required
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                        placeholder="john@example.com"
                         className="w-full px-4 py-3 rounded-lg border border-[#3F4739] bg-[#111311] text-[#E8EAE3] text-sm focus:outline-none focus:border-indigo-500 transition-colors font-light"
                       />
                     </div>
@@ -274,7 +272,6 @@ export const Contact: React.FC = () => {
                         rows={4}
                         value={formState.message}
                         onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                        placeholder="Tell me about your project requirements, tech stack, or collaboration..."
                         className="w-full px-4 py-3 rounded-lg border border-[#3F4739] bg-[#111311] text-[#E8EAE3] text-sm focus:outline-none focus:border-indigo-500 transition-colors font-light resize-none"
                       />
                     </div>
