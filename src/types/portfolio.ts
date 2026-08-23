@@ -1,23 +1,12 @@
 export interface PersonalInfo {
   name: string;
-  title: string;
-  roleTagline: string;
-  bio: string;
-  extendedBio: string[];
   location: string;
   email: string;
   phone?: string;
   github: string;
   linkedin: string;
-  twitter?: string;
   instagram?: string;
-  resumeUrl: string;
-  profileImage: string; // Path or URL to professional developer photo
-  stats: {
-    label: string;
-    value: string;
-    description?: string;
-  }[];
+  profileImage: string;
 }
 
 export interface Project {
@@ -72,11 +61,4 @@ export interface ExperienceItem {
   achievements: string[];
   technologies: string[];
   highlightMetric?: string;
-}
-
-export interface Principle {
-  title: string;
-  subtitle: string;
-  description: string;
-  codeSnippet?: string;
 }

@@ -166,18 +166,18 @@ export const Contact: React.FC = () => {
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4.5 py-2.5 rounded-full border border-zinc-700/80 bg-[#111311] text-xs font-mono text-[#969B91] hover:text-[#E8EAE3] hover:border-zinc-500 hover:bg-zinc-800/50 hover:shadow-lg transition-all flex items-center gap-2"
+                className="badge-social-github"
               >
-                <GithubIcon className="w-4 h-4 text-[#969B91]" />
+                <GithubIcon className="w-4 h-4" />
                 <span>GitHub</span>
               </a>
               <a
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4.5 py-2.5 rounded-full border border-sky-500/30 bg-sky-950/30 text-xs font-mono text-sky-400 hover:text-sky-300 hover:border-sky-400 hover:bg-sky-500/20 hover:shadow-[0_0_15px_rgba(56,189,248,0.3)] transition-all flex items-center gap-2"
+                className="badge-social-linkedin"
               >
-                <LinkedinIcon className="w-4 h-4 text-sky-400" />
+                <LinkedinIcon className="w-4 h-4" />
                 <span>LinkedIn</span>
               </a>
               {personalInfo.instagram && (
@@ -185,9 +185,9 @@ export const Contact: React.FC = () => {
                   href={personalInfo.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4.5 py-2.5 rounded-full border border-pink-500/30 bg-pink-950/30 text-xs font-mono text-pink-400 hover:text-pink-300 hover:border-pink-400 hover:bg-pink-500/20 hover:shadow-[0_0_15px_rgba(236,72,153,0.3)] transition-all flex items-center gap-2"
+                  className="badge-social-instagram"
                 >
-                  <InstagramIcon className="w-4 h-4 text-pink-400" />
+                  <InstagramIcon className="w-4 h-4" />
                   <span>Instagram</span>
                 </a>
               )}

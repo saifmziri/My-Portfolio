@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Sparkles } from 'lucide-react';
-import { personalInfo, developerPhotoPlaceholder } from '../../data/portfolioData';
+import { personalInfo } from '../../data/portfolioData';
 import { MagneticButton } from '../animations/MagneticButton';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from '../ui/Icons';
 import { useGsapContext } from '../../hooks/useGsapContext';
@@ -192,10 +192,7 @@ const DeveloperPhotoComposition: React.FC = () => {
         ">
           <img
             src={personalInfo.profileImage}
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = developerPhotoPlaceholder;
-            }}
-            alt={`${personalInfo.name} — ${personalInfo.title}`}
+            alt={`${personalInfo.name} — Full-Stack Developer`}
             className="w-full h-full object-cover object-top"
             width={208}
             height={208}
@@ -255,10 +252,7 @@ const DeveloperPhotoComposition: React.FC = () => {
           {/* Developer Photo with fallback */}
           <img
             src={personalInfo.profileImage}
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = developerPhotoPlaceholder;
-            }}
-            alt={`${personalInfo.name} — ${personalInfo.title}`}
+            alt={`${personalInfo.name} — Full-Stack Developer`}
             className="w-full h-full object-cover object-top"
             width={380}
             height={507}

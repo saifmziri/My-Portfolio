@@ -1,31 +1,8 @@
 @import "tailwindcss";
 
-@theme {
-  --color-bg-primary: #111311;
-  --color-bg-card: #1B1E1A;
-  --color-bg-card-hover: #222720;
-  --color-text-main: #E8EAE3;
-  --color-text-muted: #969B91;
-  --color-olive: #68705A;
-  --color-olive-dark: #3F4739;
-  --color-accent-lime: #C8F23D;
-  --color-accent-lime-hover: #D5FF63;
-  --color-accent-blue: #5AA9D6;
-}
-
 @layer base {
   :root {
     color-scheme: dark;
-    --bg-primary: #111311;
-    --bg-card: #1B1E1A;
-    --bg-card-hover: #222720;
-    --text-main: #E8EAE3;
-    --text-muted: #969B91;
-    --olive: #68705A;
-    --olive-dark: #3F4739;
-    --accent-lime: #C8F23D;
-    --accent-lime-hover: #D5FF63;
-    --accent-blue: #5AA9D6;
   }
 
   html {

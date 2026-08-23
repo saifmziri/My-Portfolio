@@ -205,7 +205,7 @@ export const Navbar: React.FC = () => {
                     href={personalInfo.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-full border border-[#3F4739] bg-[#111311] text-[#969B91] hover:text-[#E8EAE3] hover:border-[#68705A] transition-colors"
+                    className="btn-social-github !p-2"
                     aria-label="GitHub Profile"
                   >
                     <GithubIcon className="w-3.5 h-3.5" />
@@ -214,7 +214,7 @@ export const Navbar: React.FC = () => {
                     href={personalInfo.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-full border border-[#3F4739] bg-[#111311] text-[#969B91] hover:text-sky-400 hover:border-sky-500/40 hover:bg-sky-500/10 transition-colors"
+                    className="btn-social-linkedin !p-2"
                     aria-label="LinkedIn Profile"
                   >
                     <LinkedinIcon className="w-3.5 h-3.5" />
@@ -224,7 +224,7 @@ export const Navbar: React.FC = () => {
                       href={personalInfo.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-full border border-pink-500/30 bg-pink-950/30 text-pink-400 hover:text-pink-300 hover:border-pink-400 hover:bg-pink-500/20 hover:shadow-[0_0_15px_rgba(236,72,153,0.3)] transition-all flex items-center justify-center"
+                      className="btn-social-instagram !p-2"
                       aria-label="Instagram Profile"
                     >
                       <InstagramIcon className="w-3.5 h-3.5" />
