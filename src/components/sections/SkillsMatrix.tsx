@@ -237,39 +237,41 @@ export const SkillsMatrix: React.FC = () => {
           })}
         </div>
 
-        {/* Strict 4-Column Grid on Desktop / 2 on Mobile */}
-        <motion.div
-          layout
-          className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 sm:gap-4"
-        >
-          <AnimatePresence mode="popLayout">
-            {currentCategory.skills.map((skill) => {
-              const config = getSkillConfig(skill.icon, skill.id);
-              return (
-                <motion.div
-                  key={skill.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  whileHover={{ y: -4, scale: 1.03 }}
-                  transition={{ duration: 0.2, ease: 'easeOut' }}
-                  className={`relative group px-4 py-5 sm:py-6 rounded-2xl border border-[#3F4739] bg-[#0F172A]/60 hover:bg-slate-900/80 backdrop-blur-md transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(14,165,233,0.12)] flex flex-col items-center justify-center text-center gap-3 sm:gap-4 ${config.accent}`}
-                >
-                  {/* Official Tech Icon (TOP) */}
-                  <div className="p-2.5 rounded-2xl border border-[#3F4739] bg-[#0B0F17]/80 shadow-inner group-hover:scale-110 transition-transform shrink-0">
-                    {config.icon}
-                  </div>
+        {/* Strict 4-Column Grid on Desktop / 2 on Mobile with stable min-height */}
+        <div className="min-h-[300px] sm:min-h-[260px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategory}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.18, ease: 'easeOut' }}
+              className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 sm:gap-4"
+            >
+              {currentCategory.skills.map((skill) => {
+                const config = getSkillConfig(skill.icon, skill.id);
+                return (
+                  <motion.div
+                    key={skill.id}
+                    whileHover={{ y: -4, scale: 1.03 }}
+                    transition={{ duration: 0.15, ease: 'easeOut' }}
+                    className={`relative group px-4 py-5 sm:py-6 rounded-2xl border border-[#3F4739] bg-[#0F172A]/60 hover:bg-slate-900/80 backdrop-blur-md transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(14,165,233,0.12)] flex flex-col items-center justify-center text-center gap-3 sm:gap-4 ${config.accent}`}
+                  >
+                    {/* Official Tech Icon (TOP) */}
+                    <div className="p-2.5 rounded-2xl border border-[#3F4739] bg-[#0B0F17]/80 shadow-inner group-hover:scale-110 transition-transform shrink-0">
+                      {config.icon}
+                    </div>
 
-                  {/* Skill Name (BELOW) */}
-                  <h3 className="text-xs sm:text-sm font-bold text-[#E8EAE3] tracking-tight group-hover:text-[#E8EAE3] transition-colors line-clamp-1 w-full text-center">
-                    {skill.name}
-                  </h3>
-                </motion.div>
-              );
-            })}
+                    {/* Skill Name (BELOW) */}
+                    <h3 className="text-xs sm:text-sm font-bold text-[#E8EAE3] tracking-tight group-hover:text-[#E8EAE3] transition-colors line-clamp-1 w-full text-center">
+                      {skill.name}
+                    </h3>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
