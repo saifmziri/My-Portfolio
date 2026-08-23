@@ -78,6 +78,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               src={activeImage || project.image}
               alt={project.title}
               className="w-full h-auto max-h-[400px] object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60" />
           </div>
@@ -94,7 +96,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                       : 'border-[#3F4739] opacity-60 hover:opacity-100 hover:border-white/30'
                   }`}
                 >
-                  <img src={imgUrl} alt={`Screenshot ${idx + 1}`} className="w-full h-full object-cover" />
+                  <img src={imgUrl} alt={`Screenshot ${idx + 1}`} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                 </button>
               ))}
             </div>

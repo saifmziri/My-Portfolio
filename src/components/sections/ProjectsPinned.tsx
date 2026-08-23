@@ -324,6 +324,10 @@ export const ProjectsPinned: React.FC = () => {
                       src={activeProject.image}
                       alt={activeProject.title}
                       className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                      width={1200}
+                      height={500}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#111311]/90 via-transparent to-transparent opacity-60 pointer-events-none" />
                     <button
@@ -366,6 +370,10 @@ export const ProjectsPinned: React.FC = () => {
                         alt={activeProject.title}
                         className="w-full object-cover object-top"
                         style={{ height: '180px' }}
+                        loading="lazy"
+                        decoding="async"
+                        width={1200}
+                        height={180}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#111311]/80 via-transparent to-transparent pointer-events-none" />
                       <button

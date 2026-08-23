@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { cn } from '../../utils/cn';
 
 interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -7,42 +7,38 @@ interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
   spotlightColor?: string;
 }
 
-export const SpotlightCard: React.FC<SpotlightCardProps> = ({
+export const SpotlightCard: React.FC<SpotlightCardProps> = React.memo(({
   children,
   className = '',
   spotlightColor = 'rgba(104, 112, 90, 0.08)',
   ...props
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
-  const [isFocused, setIsFocused] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [opacity, setOpacity] = useState(0);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!divRef.current || isFocused) return;
-
-    const div = divRef.current;
-    const rect = div.getBoundingClientRect();
-
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    if (!divRef.current) return;
+    const rect = divRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    divRef.current.style.setProperty('--mouse-x', `${x}px`);
+    divRef.current.style.setProperty('--mouse-y', `${y}px`);
   };
 
   const handleFocus = () => {
-    setIsFocused(true);
-    setOpacity(1);
+    if (overlayRef.current) overlayRef.current.style.opacity = '1';
   };
 
   const handleBlur = () => {
-    setIsFocused(false);
-    setOpacity(0);
+    if (overlayRef.current) overlayRef.current.style.opacity = '0';
   };
 
   const handleMouseEnter = () => {
-    setOpacity(1);
+    if (overlayRef.current) overlayRef.current.style.opacity = '1';
   };
 
   const handleMouseLeave = () => {
-    setOpacity(0);
+    if (overlayRef.current) overlayRef.current.style.opacity = '0';
   };
 
   return (
@@ -60,13 +56,15 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
       {...props}
     >
       <div
-        className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
+        ref={overlayRef}
+        className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"
         style={{
-          opacity,
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 40%)`,
+          background: `radial-gradient(600px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), ${spotlightColor}, transparent 40%)`,
         }}
       />
       <div className="relative z-10">{children}</div>
     </div>
   );
-};
+});
+
+SpotlightCard.displayName = 'SpotlightCard';

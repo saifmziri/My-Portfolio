@@ -53,7 +53,7 @@ export const projects: Project[] = [
     category: "Full-Stack Web",
     featured: true,
     technologies: ["Laravel", "React", "TypeScript", "Tailwind CSS", "Laravel Sanctum", "REST API"],
-    image: "/projects/taskflow.png",
+    image: "/projects/taskflow.webp",
     githubFrontend: "https://github.com/saifmziri/Task-Project-Management-System-Frontend",
     githubBackend: "https://github.com/saifmziri/Task-Project-Management-System-API",
     linkedinPost: "https://www.linkedin.com/posts/saefmziri_laravel-reactjs-tailwindcss-ugcPost-7491581009075957760-C7Iy",
@@ -85,7 +85,7 @@ export const projects: Project[] = [
     category: "Full-Stack Web",
     featured: true,
     technologies: [".NET", "C#", "RESTful API", "SQL Server", "ADO.NET", "T-SQL", "JavaScript"],
-    image: "/projects/dental-clinic.png",
+    image: "/projects/dental-clinic.webp",
     linkedinPost: "https://www.linkedin.com/posts/saefmziri_dotnet-csharp-adonet-ugcPost-7494078186289451008-cQZF",
     metrics: [
       { label: "Status", value: "Production-Ready" },
@@ -115,7 +115,7 @@ export const projects: Project[] = [
     category: "Desktop Application",
     featured: true,
     technologies: ["WPF", "C#", "SQL Server", "ADO.NET", "T-SQL", "RESTful API"],
-    image: "/projects/IMS.png",
+    image: "/projects/IMS.webp",
     metrics: [
       { label: "Status", value: "Production-Ready" },
       { label: "Role", value: "Backend & DB Dev" },
@@ -144,7 +144,7 @@ export const projects: Project[] = [
     category: "Full-Stack Web",
     featured: true,
     technologies: ["React", "JavaScript", "Supabase", "PostgreSQL", "Tailwind CSS", "HTML/CSS"],
-    image: "/projects/Menu.png",
+    image: "/projects/Menu.webp",
     live: "https://wandly-menu.pages.dev/menu/#",
     metrics: [
       { label: "Status", value: "Production-Ready" },
@@ -174,14 +174,14 @@ export const projects: Project[] = [
     category: "Full-Stack Web",
     featured: false,
     technologies: ["C#", "ASP.NET Core", "Entity Framework Core", "SQL Server", "TypeScript", "Vite", "React"],
-     image: "/projects/gym1.png",
+     image: "/projects/gym1.webp",
       images: [
-    "/projects/gym1.png",
-    "/projects/gym2.png",
-    "/projects/gym3.png",
-    "/projects/gym4.png",
-    "/projects/gym5.png",
-    "/projects/gym6.png"
+    "/projects/gym1.webp",
+    "/projects/gym2.webp",
+    "/projects/gym3.webp",
+    "/projects/gym4.webp",
+    "/projects/gym5.webp",
+    "/projects/gym6.webp"
   ],
      metrics: [ 
       { label: "Status", value: "In Development" },
@@ -278,7 +278,7 @@ export const projects: Project[] = [
     "i18n",
     "OpenWeatherMap API"
   ],
-  image: "/projects/weather.png",
+  image: "/projects/weather.webp",
   live: "https://project-weatherr.netlify.app/",
   githubFrontend: "https://github.com/saifmziri/Weather",
   linkedinPost: "https://www.linkedin.com/posts/saefmziri_reactjs-reduxtoolkit-rtkquery-activity-7484343491112787968-o3pK?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF3O778BJOwLKpBGDVCGXz5RXhXo5AvDIig",
@@ -322,7 +322,7 @@ export const projects: Project[] = [
     "localStorage",
     "Font Awesome"
   ],
-  image: "/projects/todo.png",
+  image: "/projects/todo.webp",
   live: "https://stodolistt.netlify.app/",
   linkedinPost: "https://www.linkedin.com/posts/saefmziri_reactjs-reduxtoolkit-tailwindcss-activity-7483626616724807680-Hl44?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF3O778BJOwLKpBGDVCGXz5RXhXo5AvDIig",
   githubFrontend:"https://github.com/saifmziri/To-Do-List",

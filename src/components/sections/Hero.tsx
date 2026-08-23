@@ -46,7 +46,7 @@ const DeveloperPhotoComposition: React.FC = () => {
       ref={wrapperRef}
       initial={{ opacity: 0, x: 30 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
       className="relative flex items-center justify-center select-none"
       aria-hidden="true"
     >
@@ -197,7 +197,11 @@ const DeveloperPhotoComposition: React.FC = () => {
             }}
             alt={`${personalInfo.name} — ${personalInfo.title}`}
             className="w-full h-full object-cover object-top"
+            width={208}
+            height={208}
             loading="eager"
+            decoding="async"
+            fetchPriority="high"
             draggable={false}
           />
         </div>
@@ -256,7 +260,11 @@ const DeveloperPhotoComposition: React.FC = () => {
             }}
             alt={`${personalInfo.name} — ${personalInfo.title}`}
             className="w-full h-full object-cover object-top"
+            width={380}
+            height={507}
             loading="eager"
+            decoding="async"
+            fetchPriority="high"
             draggable={false}
           />
 

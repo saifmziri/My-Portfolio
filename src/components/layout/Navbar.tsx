@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Code2, ChevronRight, MapPin, Sparkles } from 'lucide-react';
 import { personalInfo } from '../../data/portfolioData';
@@ -15,29 +15,42 @@ const navItems = [
 
 export const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('');
-  const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const progressBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
-      setScrollProgress(progress);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
 
-      // Section active detection
-      const sections = navItems.map(item => item.href.substring(1));
-      const scrollPos = window.scrollY + 200;
+          if (progressBarRef.current) {
+            progressBarRef.current.style.width = `${progress}%`;
+          }
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.offsetTop <= scrollPos) {
-          setActiveSection(sections[i]);
-          break;
-        }
+          // Section active detection
+          const sections = navItems.map(item => item.href.substring(1));
+          const scrollPos = window.scrollY + 200;
+
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const el = document.getElementById(sections[i]);
+            if (el && el.offsetTop <= scrollPos) {
+              setActiveSection(prev => (prev !== sections[i] ? sections[i] : prev));
+              break;
+            }
+          }
+
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial call
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -46,8 +59,9 @@ export const Navbar: React.FC = () => {
       {/* Top Scroll Progress Line */}
       <div className="fixed top-0 left-0 right-0 z-50 h-[2px] bg-zinc-900">
         <div
-          className="h-full bg-gradient-to-r from-[#68705A] via-[#C8F23D] to-[#68705A] transition-all duration-150"
-          style={{ width: `${scrollProgress}%` }}
+          ref={progressBarRef}
+          className="h-full bg-gradient-to-r from-[#68705A] via-[#C8F23D] to-[#68705A] transition-all duration-75"
+          style={{ width: '0%' }}
         />
       </div>
 
