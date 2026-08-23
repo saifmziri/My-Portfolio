@@ -29,7 +29,6 @@
   }
 
   html {
-    scroll-behavior: smooth;
     background-color: #111311;
     color: #E8EAE3;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
