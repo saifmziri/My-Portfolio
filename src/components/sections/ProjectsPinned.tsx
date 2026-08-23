@@ -17,37 +17,32 @@ export const ProjectsPinned: React.FC = () => {
   const [activeProjectIndex, setActiveProjectIndex] = useState<number>(0);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean>(false);
-  const [isDesktop, setIsDesktop] = useState<boolean>(true);
+  const [isDesktop, setIsDesktop] = useState<boolean>(() =>
+    typeof window !== 'undefined' ? window.innerWidth >= 1024 : true
+  );
 
-  // Lock GSAP onUpdate during button click navigation to prevent smooth-scroll frame feedback loop (flicker/lag)
+  // Lock GSAP onUpdate during button click navigation to prevent smooth-scroll frame feedback loop
   const isNavigatingRef = useRef<boolean>(false);
   const navTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const activeIndexRef = useRef<number>(0);
   activeIndexRef.current = activeProjectIndex;
 
   useEffect(() => {
-    const checkViewport = () => setIsDesktop(window.innerWidth >= 1024);
+    const checkViewport = () => {
+      const nextIsDesktop = window.innerWidth >= 1024;
+      setIsDesktop((prev) => (prev !== nextIsDesktop ? nextIsDesktop : prev));
+    };
     const checkReducedMotion = () => {
       setPrefersReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     };
-    checkViewport();
     checkReducedMotion();
     window.addEventListener('resize', checkViewport);
     const motionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
     motionMedia.addEventListener('change', checkReducedMotion);
 
-    // Reset navigation lock if user manually touches/scrolls
-    const handleUserScrollInteraction = () => {
-      if (isNavigatingRef.current) {
-        // Allow wheel to break navigation lock if user forces manual scroll
-      }
-    };
-    window.addEventListener('wheel', handleUserScrollInteraction, { passive: true });
-
     return () => {
       window.removeEventListener('resize', checkViewport);
       motionMedia.removeEventListener('change', checkReducedMotion);
-      window.removeEventListener('wheel', handleUserScrollInteraction);
       if (navTimeoutRef.current) clearTimeout(navTimeoutRef.current);
     };
   }, []);
@@ -62,13 +57,14 @@ export const ProjectsPinned: React.FC = () => {
         trigger: containerRef.current,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 0.5,
-        invalidateOnRefresh: true,
+        scrub: 0.3,
+        invalidateOnRefresh: false,
         onUpdate: (self) => {
-          // If the user triggered button navigation (Next/Prev/Dot), ignore scroll frames until smooth scroll finishes
+          // If button navigation was clicked, keep state locked until scroll settles
           if (isNavigatingRef.current) return;
 
-          const calculatedIndex = Math.floor(self.progress * totalProjects);
+          if (totalProjects <= 1) return;
+          const calculatedIndex = Math.round(self.progress * (totalProjects - 1));
           const clampedIndex = Math.max(0, Math.min(totalProjects - 1, calculatedIndex));
           
           if (clampedIndex !== activeIndexRef.current) {
@@ -82,21 +78,22 @@ export const ProjectsPinned: React.FC = () => {
     return () => {
       tl.kill();
     };
-  }, containerRef, []);
+  }, containerRef, [isDesktop]);
 
   const activeProject = projects[activeProjectIndex];
 
   // Section height = scroll space per project + dwell space for last project
-  const scrollPerProject = isDesktop ? 100 : 75;
+  const scrollPerProject = isDesktop ? 80 : 45;
   const sectionStyle: React.CSSProperties = {
-    height: `calc(${(projects.length + 0.6) * scrollPerProject}vh)`
+    height: `calc(${(projects.length + 0.5) * scrollPerProject}vh)`
   };
 
   /**
    * Navigate to a project directly without triggering GSAP scroll-frame feedback loop
    */
   const scrollToProject = useCallback((idx: number) => {
-    const clampedIndex = Math.max(0, Math.min(projects.length - 1, idx));
+    const total = projects.length;
+    const clampedIndex = Math.max(0, Math.min(total - 1, idx));
     
     // 1. Set navigation lock flag to prevent GSAP onUpdate from overriding state during smooth scroll
     isNavigatingRef.current = true;
@@ -106,10 +103,10 @@ export const ProjectsPinned: React.FC = () => {
     // Clear any active unlock timer
     if (navTimeoutRef.current) clearTimeout(navTimeoutRef.current);
 
-    // Unlock after smooth scroll completes (~600ms)
+    // Unlock after smooth scroll completes
     navTimeoutRef.current = setTimeout(() => {
       isNavigatingRef.current = false;
-    }, 650);
+    }, 750);
 
     // 2. Smooth scroll the window to the exact center of target project segment
     const section = containerRef.current;
@@ -120,8 +117,8 @@ export const ProjectsPinned: React.FC = () => {
     const viewportHeight = window.innerHeight;
     const scrollableRange = sectionHeight - viewportHeight;
 
-    if (scrollableRange > 0) {
-      const targetProgress = (clampedIndex + 0.5) / projects.length;
+    if (scrollableRange > 0 && total > 1) {
+      const targetProgress = clampedIndex / (total - 1);
       const targetScrollY = sectionTop + targetProgress * scrollableRange;
       window.scrollTo({ top: targetScrollY, behavior: 'smooth' });
     }
