@@ -47,9 +47,9 @@ export const ProjectsPinned: React.FC = () => {
     };
   }, []);
 
-  // Desktop only: Use CSS sticky for pinning — GSAP ScrollTrigger tracks progress only for manual scrolling
+  // Use CSS sticky for pinning — GSAP ScrollTrigger tracks progress for scroll animation
   useGsapContext(() => {
-    if (!isDesktop || !containerRef.current) return;
+    if (!containerRef.current) return;
     const totalProjects = projects.length;
 
     const tl = gsap.timeline({
@@ -82,13 +82,14 @@ export const ProjectsPinned: React.FC = () => {
 
   const activeProject = projects[activeProjectIndex];
 
-  // Desktop: pinned scroll space. Mobile: natural flow height
-  const sectionStyle: React.CSSProperties = isDesktop
-    ? { height: `calc(${(projects.length + 0.5) * 80}vh)` }
-    : {};
+  // Section height = scroll space per project + dwell space for last project
+  const scrollPerProject = isDesktop ? 80 : 55;
+  const sectionStyle: React.CSSProperties = {
+    height: `calc(${(projects.length + 0.5) * scrollPerProject}vh)`
+  };
 
   /**
-   * Navigate to a project directly
+   * Navigate to a project directly via buttons or dots
    */
   const scrollToProject = useCallback((idx: number) => {
     const total = projects.length;
@@ -97,44 +98,39 @@ export const ProjectsPinned: React.FC = () => {
     activeIndexRef.current = clampedIndex;
     setActiveProjectIndex(clampedIndex);
 
-    // On desktop, sync the window scroll position with the pinned progress
-    if (isDesktop && containerRef.current) {
-      isNavigatingRef.current = true;
-      if (navTimeoutRef.current) clearTimeout(navTimeoutRef.current);
-      navTimeoutRef.current = setTimeout(() => {
-        isNavigatingRef.current = false;
-      }, 750);
+    isNavigatingRef.current = true;
+    if (navTimeoutRef.current) clearTimeout(navTimeoutRef.current);
+    navTimeoutRef.current = setTimeout(() => {
+      isNavigatingRef.current = false;
+    }, 750);
 
-      const section = containerRef.current;
-      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-      const sectionHeight = section.offsetHeight;
-      const viewportHeight = window.innerHeight;
-      const scrollableRange = sectionHeight - viewportHeight;
+    const section = containerRef.current;
+    if (!section) return;
 
-      if (scrollableRange > 0 && total > 1) {
-        const targetProgress = clampedIndex / (total - 1);
-        const targetScrollY = sectionTop + targetProgress * scrollableRange;
-        window.scrollTo({ top: targetScrollY, behavior: 'smooth' });
-      }
+    const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+    const sectionHeight = section.offsetHeight;
+    const viewportHeight = window.innerHeight;
+    const scrollableRange = sectionHeight - viewportHeight;
+
+    if (scrollableRange > 0 && total > 1) {
+      const targetProgress = clampedIndex / (total - 1);
+      const targetScrollY = sectionTop + targetProgress * scrollableRange;
+      window.scrollTo({ top: targetScrollY, behavior: 'smooth' });
     }
-  }, [isDesktop]);
+  }, []);
 
   return (
     <>
       <section
         ref={containerRef}
         id="projects"
-        className={`relative bg-[#111311]/40 border-t border-[#3F4739] ${!isDesktop ? 'py-16 sm:py-20' : ''}`}
+        className="relative bg-[#111311]/40 border-t border-[#3F4739]"
         style={sectionStyle}
       >
-        {/* Sticky showcase container on desktop, natural flex container on mobile */}
+        {/* Sticky showcase container */}
         <div
           ref={pinnedBoxRef}
-          className={
-            isDesktop
-              ? 'sticky top-0 w-full h-screen flex flex-col justify-center overflow-hidden'
-              : 'w-full flex flex-col justify-center'
-          }
+          className="sticky top-0 w-full h-screen flex flex-col justify-center overflow-hidden"
         >
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 py-6 lg:py-8">
 
